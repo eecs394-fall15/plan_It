@@ -1,120 +1,91 @@
-<div class="padding" ng-controller="SettingsController">
+<div class="padding" ng-controller="LearnMoreController">
 
   <super-navbar>
     <super-navbar-title>
-      Settings
+     Kuala Lumpur, Malaysia
     </super-navbar-title>
   </super-navbar>
 
-  <h3>Supersonic CSS Components</h3>
-
-  <p>Below are some example Supersonic CSS components for you to study and play around with.</p>
-
-  <h2>I <span class="assertive">&lt;3</span>...</h2>
-
-  <ul class="list">
-    <li class="item item-toggle">
-       HTML5
-       <label class="toggle toggle-assertive">
-         <input type="checkbox">
-         <div class="track">
-           <div class="handle"></div>
-         </div>
-       </label>
-    </li>
-
-    <li class="item item-toggle">
-       CoffeeScript
-       <label class="toggle toggle-royal">
-         <input type="checkbox">
-         <div class="track">
-           <div class="handle"></div>
-         </div>
-       </label>
-    </li>
-
-    <li class="item item-toggle">
-       SASS
-       <label class="toggle toggle-balanced">
-         <input type="checkbox">
-         <div class="track">
-           <div class="handle"></div>
-         </div>
-       </label>
-    </li>
-
-    <li class="item item-toggle">
-       Native performance
-       <label class="toggle toggle-calm">
-         <input type="checkbox">
-         <div class="track">
-           <div class="handle"></div>
-         </div>
-       </label>
-    </li>
-  </ul>
-
-  <h2>Drag some sliders</h2>
-
-  <div class="list">
-    <div class="item range range-positive">
-      <i class="icon super-ios-sunny-outline"></i>
-      <input type="range" name="volume" min="0" max="100" value="33">
-      <i class="icon super-ios-sunny"></i>
+  <button class="button button-block button-positive" ng-click="showDetails = ! showDetails"> 
+      <i class="icon-left super-arrow-down-b" id="arrow"></i>
+      Breakfast</button>
+    <div class="procedure-details" ng-class="{ 'hidden': ! showDetails }">
+        <button class="button button-block button-stable">Imbi Pasar </button>
+        <button id="suggestion" class="button button-block button-stable" ng-click="showDetailsPorkBall = ! showDetailsPorkBall">Imbi Road Pork Ball Noodle </button> 
+        
+        <div class="procedure-details" ng-class="{'hidden': ! showDetailsPorkBall }">
+            <div class="card">
+                <div class="item item-divider">
+                    ABC says:
+                </div>
+                <div class="item item-text-wrap" >
+                    Great local foods under one roof! Try the local dish Yong Tau Foo
+                </div>
+            </div>
+            <div class="card" >
+                <div class="item item-divider">
+                    XYZ says:
+                </div>
+                <div class="item item-text-wrap">
+                    Be sure to go early and try the Halnan White Coffee!  
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="item range range-assertive">
-      <i class="icon super-ios-star-outline"></i>
-      <input type="range" name="bass" min="0" max="100" value="90">
-      <i class="icon super-ios-star"></i>
+    
+  <button class="button button-block button-positive" ng-click="showDetails1 = ! showDetails1"> 
+       <i class="icon-left super-arrow-down-b" id="arrow"></i>
+      Amusement Parks</button>
+    <div class="procedure-details" ng-class="{ 'hidden': ! showDetails1 }">
+         <button class="button button-block button-stable">Berjaya Times Square Theme Park </button>
+        <button class="button button-block button-stable" ng-click="showDetailsLagoon = ! showDetailsLagoon">Sunway Lagoon Theme Park </button> 
+        
+                <div class="procedure-details" ng-class="{'hidden': ! showDetailsLagoon }">
+            <div class="card" >
+                <div class="item item-divider">
+                    ABC says:
+                </div>
+                <div class="item item-text-wrap">
+                    Avoid line by purchasing ticket online!
+                </div>
+            </div>
+            <div class="card" >
+                <div class="item item-divider">
+                    XYZ says:
+                </div>
+                <div class="item item-text-wrap">
+                    Be sure to go for the indoor roller coaster and DNA machine 
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="item range range-energized">
-      <i class="icon super-ios-heart-outline"></i>
-      <input type="range" name="treble" min="0" max="100" value="66">
-      <i class="icon super-ios-heart"></i>
+    
+  <button class="button button-block button-positive" ng-click="showDetails2 = ! showDetails2"> 
+       <i class="icon-left super-arrow-down-b" id="arrow"></i>
+      Coffee/Tea </button>
+    <div class="procedure-details" ng-class="{ 'hidden': ! showDetails2 }">
+         <button class="button button-block button-stable">VCR </button>
+        <button class="button button-block button-stable" ng-click="showDetailsPULP = ! showDetailsPULP">PULP Bangsar </button> 
+        
+        <div class="procedure-details" ng-class="{'hidden': ! showDetailsPULP }">
+            <div class="card" >
+                <div class="item item-divider">
+                    ABC says:
+                </div>
+                <div class="item item-text-wrap">
+                    One of the best cafes in KL. Try their Potato Waffle
+                </div>
+            </div>
+            <div class="card" >
+                <div class="item item-divider">
+                    XYZ says:
+                </div>
+                <div class="item item-text-wrap">
+                    Go to the 2nd floor for their one of a kind glasshouse seating 
+                </div>
+            </div>
+        </div>
+        
+        <button class="button button-block button-stable">DR.Inc. </button> 
     </div>
-
-    <div class="item range range-balanced">
-      <i class="icon super-ios-bolt-outline"></i>
-      <input type="range" name="awesomeness" min="0" max="100" value="50">
-      <i class="icon super-ios-bolt"></i>
-    </div>
-
-    <div class="item range range-royal">
-      <i class="icon super-ios-wineglass-outline"></i>
-      <input type="range" name="unicorns" min="0" max="100" value="10">
-      <i class="icon super-ios-wineglass"></i>
-    </div>
-  </div>
-
-  <h2>Check some checkboxes</h2>
-
-  <ul class="list">
-    <li class="item item-checkbox">
-       <label class="checkbox">
-         <input type="checkbox">
-       </label>
-       X-Wing
-    </li>
-
-    <li class="item item-checkbox">
-       <label class="checkbox checkbox-assertive">
-         <input type="checkbox">
-       </label>
-       TIE Fighter
-    </li>
-
-    <li class="item item-checkbox">
-       <label class="checkbox checkbox-calm">
-         <input type="checkbox">
-       </label>
-       A-Wing
-    </li>
-  </ul>
-
-  <p>
-    Discover more CSS components and Supersonic awesomeness at <a onclick="supersonic.app.openURL('http://docs.appgyver.com')" href="#">http://docs.appgyver.com</a>
-  </p>
-
 </div>
