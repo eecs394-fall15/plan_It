@@ -1,30 +1,13 @@
-<div class="padding">
+<div class="padding" ng-controller="GettingStartedController">
 
   <super-navbar>
     <super-navbar-title>
       Plan It Holiday
     </super-navbar-title>
   </super-navbar>
-  
-<super-navigate location="example#index">
-  <button class="button button-block button-positive" ng-class="active">Kaula Lampur</button>
- </super-navigate>
-
-<super-navigate location="example#index">
-  <button class="button button-block button-positive" >Munnar</button>
- </super-navigate>
-
-<super-navigate location="example#index">
-  <button class="button button-block button-positive" >Mysore</button>
- </super-navigate>
-
-<super-navigate location="example#index">
-  <button class="button button-block button-positive" >Bangalore</button>
- </super-navigate>
-
-<super-navigate location="example#index">
-  <button class="button button-block button-positive" >Hyderabad</button>
- </super-navigate>
-
+    
+<super-navigate location="example#settings" ng-repeat="itenerary in iterneraries">
+    <button class="button button-block button-positive"><h3 style="color:#FFFFFF" ng-bind="itenerary.get('title')"></h3></button>
+    </super-navigate>
 
 </div>
