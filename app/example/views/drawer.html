@@ -1,9 +1,10 @@
-<script>
-  document.addEventListener("touchmove", function(e){
-    e.preventDefault();
-  });
-</script>
-<ul class="list">
-  <li class="item" onclick="supersonic.ui.drawers.close()">Home</li>
-  <li class="item" onclick="supersonic.ui.drawers.close()">My Profile</li>
-</ul>
+
+<div ng-controller="TemplateController">
+<div class="form-group" data-ng-repeat="choice in choices">
+  <label for="choice" ng-show="showChoiceLabel(choice)">Events</label> <br>
+  <button ng-show="showAddChoice(choice)" ng-click="addNewChoice()">Add another choice</button>
+  <input type="text" ng-model="choice.name" name="" placeholder="Enter a restaurant name">
+</div>
+
+<h2>test</h2>
+</div>
