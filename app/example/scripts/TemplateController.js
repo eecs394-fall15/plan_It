@@ -39,7 +39,7 @@ angular
                     var event = new Event(); 
                     
                     event.set("title",eventinfo.title);
-                    event.set("parItenerary",itenerary); 
+                    event.set("parentItenerary",itenerary); 
                     event.set("time",eventinfo.time);
                     event.set("info",eventinfo.info); 
                     
@@ -49,13 +49,15 @@ angular
                         },
                         error: function(event, error){
                             supersonic.logger.log("event failed to save");
+                            supersonic.logger.log(error); 
                         }
                     });
                 }
                 
             },
             error: function(itenerary, error) {
-                supersonic.logger.log("itenerary failed to save");    
+                supersonic.logger.log("itenerary failed to save");  
+                supersonic.logger.log(error); 
             }
         }); 
     };
