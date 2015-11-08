@@ -1,6 +1,6 @@
 angular
   .module('example')
-  .controller('SettingsController', function($scope, supersonic) {
+  .controller('customizeController', function($scope, supersonic) {
     $scope.navbarTitle = "Settings";
     
     supersonic.ui.views.current.whenVisible(function() {
