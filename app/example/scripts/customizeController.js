@@ -1,7 +1,7 @@
 angular
   .module('example')
-  .controller('SettingsController', function($scope, supersonic) {
-    $scope.navbarTitle = "Settings";
+  .controller('customizeController', function($scope, supersonic) {
+    $scope.navbarTitle = "Customize";
     $scope.events = []; 
     $scope.suggestions = {};
     $scope.eventswsugs=[];
