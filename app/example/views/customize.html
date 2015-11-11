@@ -1,17 +1,20 @@
-<div class="padding" ng-controller="customizeController">
+<div class="padding" ng-controller="SettingsController">
 
   <super-navbar>
     <super-navbar-title ng-bind="itenary.get('title')"></super-navbar-title>
-        
-    </super-navbar-title>
+      <super-navbar-button side="right"> <b id="plus">+</b></super-navbar-button>
   </super-navbar>
-
-  <button class="button button-block button-positive" ng-click="showDetails = ! showDetails"> 
+    
+    
+<div ng-repeat = "event in eventswsugs" >  
+  <button class="button button-block button-positive" ng-click="findSuggestions(event.id)" ng-show = "showDetails = ! showDetails"> 
       <i class="icon-left super-arrow-down-b" id="arrow"></i>
-      Breakfast</button>
-    <div class="procedure-details" ng-class="{ 'hidden': ! showDetails }">
-        <button class="button button-block button-stable">Imbi Pasar </button>
-        <button id="suggestion" class="button button-block button-stable" ng-click="showDetailsPorkBall = ! showDetailsPorkBall">Imbi Road Pork Ball Noodle </button> 
+      <div ng-bind="event.events_id.get('title')" ></div></button>
+        <div ng-bind="event.events_id.id"></div>
+    <div ng-repeat = "sug in event.events_sug" class="procedure-details" ng-show="{ 'hidden': ! showDetails }">
+        <button id="suggestion" class="button button-block button-stable" ng-click="showDetailsPorkBall = ! showDetailsPorkBall">
+            <div ng-bind="sug"></div>
+        </button> 
         
         <div class="procedure-details" ng-class="{'hidden': ! showDetailsPorkBall }">
             <div class="card">
@@ -30,61 +33,11 @@
                     Be sure to go early and try the Halnan White Coffee!  
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
+    </div> 
     
-  <button class="button button-block button-positive" ng-click="showDetails1 = ! showDetails1"> 
-       <i class="icon-left super-arrow-down-b" id="arrow"></i>
-      Amusement Parks</button>
-    <div class="procedure-details" ng-class="{ 'hidden': ! showDetails1 }">
-         <button class="button button-block button-stable">Berjaya Times Square Theme Park </button>
-        <button class="button button-block button-stable" ng-click="showDetailsLagoon = ! showDetailsLagoon">Sunway Lagoon Theme Park </button> 
-        
-                <div class="procedure-details" ng-class="{'hidden': ! showDetailsLagoon }">
-            <div class="card" >
-                <div class="item item-divider">
-                    ABC says:
-                </div>
-                <div class="item item-text-wrap">
-                    Avoid line by purchasing ticket online!
-                </div>
-            </div>
-            <div class="card" >
-                <div class="item item-divider">
-                    XYZ says:
-                </div>
-                <div class="item item-text-wrap">
-                    Be sure to go for the indoor roller coaster and DNA machine 
-                </div>
-            </div>
-        </div>
-    </div>
-    
-  <button class="button button-block button-positive" ng-click="showDetails2 = ! showDetails2"> 
-       <i class="icon-left super-arrow-down-b" id="arrow"></i>
-      Coffee/Tea </button>
-    <div class="procedure-details" ng-class="{ 'hidden': ! showDetails2 }">
-         <button class="button button-block button-stable">VCR </button>
-        <button class="button button-block button-stable" ng-click="showDetailsPULP = ! showDetailsPULP">PULP Bangsar </button> 
-        
-        <div class="procedure-details" ng-class="{'hidden': ! showDetailsPULP }">
-            <div class="card" >
-                <div class="item item-divider">
-                    ABC says:
-                </div>
-                <div class="item item-text-wrap">
-                    One of the best cafes in KL. Try their Potato Waffle
-                </div>
-            </div>
-            <div class="card" >
-                <div class="item item-divider">
-                    XYZ says:
-                </div>
-                <div class="item item-text-wrap">
-                    Go to the 2nd floor for their one of a kind glasshouse seating 
-                </div>
-            </div>
-        </div>
+</div>
         
         <button class="button button-block button-stable">DR.Inc. </button> 
     </div>
