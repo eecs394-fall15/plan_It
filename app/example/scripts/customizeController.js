@@ -1,67 +1,28 @@
 angular
   .module('example')
   .controller('customizeController', function($scope, supersonic) {
-  $scope.events = []; 
+
+    $scope.events = []; 
 
     
     supersonic.ui.views.current.whenVisible(function() {
         supersonic.logger.log("f1 called");
         
-        var Itenary = Parse.Object.extend("Itenary");
+        var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
-        var iternaryIdstr="AzXTi8GA53";
+        var iternaryIdstr="1AtJcYGjFs";
         
         query.equalTo("objectId", iternaryIdstr);
+        query.include("events");
+        query.include("events.suggestions");
+        query.include("events.suggestions.tips"); 
         query.find({
-            success: function(results) {
-            supersonic.logger.log("queried successfully");
-            supersonic.logger.info("queried successfully");    
+            success: function(itinerary) {
+            supersonic.logger.log("queried successfully");   
                 
-            // Do something with the returned Parse.Object values
-                $scope.itenary = results[0];
-                supersonic.logger.log(results);
-                
-                
-                var Event = Parse.Object.extend("Event"); 
-                var eventQuery = new Parse.Query(Event); 
-                eventQuery.equalTo("parIter", $scope.itenary.id); 
-                eventQuery.find({
-                    success: function(resultsE) {
-                        var tempEvents = resultsE; 
-                        var eventId = resultsE[2].id;
-                        var breakfastEvent = tempEvents[2]; // object
-                        
-                        resultsE[0].suggs = []; // not making a difference 
-                        resultsE[1].suggs = []; 
-                        
-                        var Suggestion = Parse.Object.extend("Suggestion"); 
-                        var suggestionQuery = new Parse.Query(Suggestion); 
-                        suggestionQuery.equalTo("parEventId", eventId);
-                        suggestionQuery.find({
-                            success: function(resultsSugg) {
-                                
-                                breakfastEvent.suggs = resultsSugg; 
-                                
-                                $scope.tree = breakfastEvent.suggs[0].get('title');
-                                 $scope.tree2 = breakfastEvent.suggs[1].get('title');
-                                
-                               // $scope.tree = resultsSugg[0].get('title'); // yay 
-                            },
-                            error: function(error) { 
-                                  supersonic.logger.log(error); 
-                            }
-                          
-                        }); 
-                        
-                        $scope.events = tempEvents;
-                        supersonic.logger.log(resultsE);
-                        supersonic.logger.info(resultsE);    
-
-                    },
-                    error: function(error) {
-                         supersonic.logger.log(error); 
-                    }
-                });
+                $scope.itenary = itinerary[0];
+                supersonic.logger.log(itinerary);
+                 supersonic.logger.info(itinerary);
                         
      },
         error: function(error) {
