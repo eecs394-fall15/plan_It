@@ -23,6 +23,7 @@ angular
                 $scope.itenary = itinerary[0];
                 supersonic.logger.log(itinerary);
                  supersonic.logger.info(itinerary);
+                 $scope.events=itinerary[0].get("events");
                         
      },
         error: function(error) {
