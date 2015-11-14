@@ -26,16 +26,17 @@
         
     </div>
     
-  <div ng-repeat = "suggestion in event.get('suggestions')">
-    <div class="row">
-      <div class="col col-75 col-offset-25">
-        <button class="button button-positive" ng-bind="suggestion.get('title')"></button>
+      <div ng-repeat = "suggestion in event.get('suggestions')">
+        <div class="list card">
+        
+            <span ng-bind="suggestion.get('title')"> </span>
+           <super-navigate data-params-id="suggestion"><i class="super-ios-chatboxes-outline" ></i></super-navigate>
+         
+        </div>
           <div ng-repeat = "tip in suggestion.get('tips')">
             <button class="button button-positive" ng-bind="tip.get('title')"></button>
           </div>
-      </div>
     </div>
-  </div>
 
    
     
