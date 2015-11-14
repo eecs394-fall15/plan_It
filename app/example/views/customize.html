@@ -1,32 +1,11 @@
 <div class="padding" ng-controller="customizeController">
 
-<super-navbar>
+  <super-navbar>
     <super-navbar-title ng-bind="itenary.get('title')"></super-navbar-title>
       <super-navbar-button side="right"> <b id="plus">+</b></super-navbar-button>
   </super-navbar>
     
 <div ng-repeat = "event in events" >  
-      <span style="display: inline;">
-        <button ng-click="showDetails = ! showDetails" class="button button-small button-calm" id="time">
-            <span ng-bind="event.get('time') | date: 'shortTime'"></span>
-        </button>
-        <button class="button button-positive" class="button button-block button-stable" ng-click="showDetails = ! showDetails" id="event"> 
-             <i class="icon-left super-arrow-down-b" id="arrow"></i>
-            Ideas for
-            <span ng-bind="event.get('title')" ></span>
-        </button>
-    </span>
-    <div ng-repeat = "suggest in event.suggs">
-      <div ng-class="{'hidden': ! showDetails}">
-          <div class ="card">
-            <p>Suggestion:</p>
-            <span ng-bind = "suggest.get('title')"></span>
-          </div>
-      </div> 
-    </div>
-</div>
-    
-<!-- <div ng-repeat = "event in events | orderBy: ['event.time'] : true" >  
   <span style="display: inline;">
       <button class="button button-small button-calm" id="time">
           <span ng-bind="event.get('time') | date: 'shortTime'"></span>
@@ -36,16 +15,16 @@
           <span ng-bind="event.get('title')" ></span>
       </button>
       </span>
-    <div ng-repeat = "suggest in event.suggs">
-        <span ng-bind = "suggest.get('title')"></span>
+    
+      <div ng-repeat = "suggestion in event.get('suggestions')">
+        <button class="button button-positive" ng-bind="suggestion.get('title')"></button>
+          <div ng-repeat = "tip in suggestion.get('tips')">
+            <button class="button button-positive" ng-bind="tip.get('title')"></button>
+          </div>
     </div>
 </div>
     
-</div>  -->
-
-
-    
-
+</div>
     
     
     
