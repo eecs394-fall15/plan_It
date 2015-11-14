@@ -6,7 +6,7 @@
   </super-navbar>
     
     
-<form ng-submit="saveSuggestion()">
+<form>
 <div ng-repeat = "event in events" >  
   <span style="display: inline;">
       <button class="button button-small button-calm" id="time">
@@ -20,9 +20,18 @@
     
       <div ng-repeat = "suggestion in event.get('suggestions')">
         <div class="list card">
-        <label class="checkbox">
-       	    <input type="checkbox">
-    	</label>
+          
+          
+
+
+          <label class="checkbox">
+         	    <input type="checkbox" ng-model="sug_isSaved">
+      	  </label>
+
+          <button ng-click="saveSuggestion(suggestion.id)">Save</button>
+          <p>{{suggestion.id}}</p>
+
+
             <span ng-bind="suggestion.get('title')"> </span>
            <super-navigate data-params-id="suggestion" location="example#tips"><i class="super-ios-chatboxes-outline" ></i></super-navigate>
          
