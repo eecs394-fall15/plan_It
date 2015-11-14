@@ -1,0 +1,23 @@
+<div class="padding" ng-controller="TipsController">
+
+  <super-navbar>
+  </super-navbar>
+    
+    <div class="list">
+        <div class="item item-divider">
+            <span>Tips for </span>
+            <span ng-bind="suggestion.title"></span>
+        </div>
+    </div>
+    
+    <div ng-repeat=" tip in tips">
+        <div class="card">
+            <div class="item item-divider">
+                <span ng-bind="tip.author"></span>
+                <span> says: </span>
+            </div>
+            <div class="item item-text-wrap" ng-bind="tip.title">
+            </div>  
+        </div>
+    </div>
+</div>
