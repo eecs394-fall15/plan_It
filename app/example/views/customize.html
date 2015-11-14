@@ -5,43 +5,38 @@
       <super-navbar-button side="right"> <b id="plus">+</b></super-navbar-button>
   </super-navbar>
     
+    
+<form ng-submit="saveSuggestion()">
 <div ng-repeat = "event in events" >  
-    <div class="row">
-        <div class="col">
-
-          <button ng-click="showDetails = ! showDetails" class="button button-small button-calm" id="time">
-            <span ng-bind="event.get('time') | date: 'shortTime'"></span>
-        </button>
-
-        </div>
-        
-        <div class="col col-75">
-          <button class="button button-positive" class="button button-block button-stable" ng-click="showDetails = ! showDetails" id="event"> 
-             <i class="icon-left super-arrow-down-b" id="arrow"></i>
-            Ideas for
-            <span ng-bind="event.get('title')" ></span>
-        </button>
-
-        </div>
-        
-    </div>
+  <span style="display: inline;">
+      <button class="button button-small button-calm" id="time">
+          <span ng-bind="event.get('time') | date: 'shortTime'"></span>
+      </button>
+      <button class="button button-positive" id="event"> 
+          Ideas for
+          <span ng-bind="event.get('title')" ></span>
+      </button>
+      </span>
     
       <div ng-repeat = "suggestion in event.get('suggestions')">
         <div class="list card">
-        
+        <label class="checkbox">
+       	    <input type="checkbox">
+    	</label>
             <span ng-bind="suggestion.get('title')"> </span>
-           <super-navigate data-params-id="suggestion"><i class="super-ios-chatboxes-outline" ></i></super-navigate>
+           <super-navigate data-params-id="suggestion" location="example#tips"><i class="super-ios-chatboxes-outline" ></i></super-navigate>
          
         </div>
           <div ng-repeat = "tip in suggestion.get('tips')">
             <button class="button button-positive" ng-bind="tip.get('title')"></button>
           </div>
     </div>
-
-   
-    
-      
 </div>
+    
+    <button class="button button-full button-calm">
+        Save 
+    </button>
+    </form>  
     
 </div>
     
