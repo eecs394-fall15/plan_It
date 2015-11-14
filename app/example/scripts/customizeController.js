@@ -30,5 +30,12 @@ angular
         supersonic.logger.log("query failed");
         }  
         });
- });
-  });
+
+    });
+
+    $scope.saveSuggestion = function  (suggestionId) {
+      
+      // body...
+    }
+
+});
