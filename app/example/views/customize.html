@@ -33,7 +33,7 @@
 
 
             <span ng-bind="suggestion.get('title')"> </span>
-           <super-navigate data-params-id="suggestion" location="example#tips"><i class="super-ios-chatboxes-outline" ></i></super-navigate>
+           <super-navigate data-params-id="{{suggestion}}" location="example#tips"><i class="super-ios-chatboxes-outline" ></i></super-navigate>
          
         </div>
           <div ng-repeat = "tip in suggestion.get('tips')">
