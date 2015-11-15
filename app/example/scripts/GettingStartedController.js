@@ -5,7 +5,7 @@ angular
 
         supersonic.ui.views.current.whenVisible(function() {
 
-        var Itenary = Parse.Object.extend("Itenary");
+        var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
         query.find({
             success: function (results) {

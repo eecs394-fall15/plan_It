@@ -2,7 +2,12 @@ angular
   .module('example')
   .controller('customizeController', function($scope, supersonic) {
 
-    $scope.events = []; 
+    $scope.events = [];
+    var itineraryId = null;
+              
+    supersonic.ui.views.current.params.onValue(function(itinerary_id){
+                                               itineraryId =itinerary_id;
+                                               });
 
     
     supersonic.ui.views.current.whenVisible(function() {
@@ -10,9 +15,9 @@ angular
         
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
-        var iternaryIdstr="1AtJcYGjFs";
+        //var iternaryIdstr="1AtJcYGjFs";
         
-        query.equalTo("objectId", iternaryIdstr);
+        query.equalTo("objectId", itineraryId);
         query.include("events");
         query.include("events.suggestions");
         query.include("events.suggestions.tips"); 
