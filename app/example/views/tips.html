@@ -3,7 +3,7 @@
   <super-navbar>
   </super-navbar>
     
-    <div class="list">
+    <div class="list" id="suggHeader">
         <div class="item item-divider">
             <span>Tips for </span>
             <span ng-bind="suggestion.title"></span>
@@ -12,12 +12,16 @@
     
     <div ng-repeat=" tip in tips">
         <div class="card">
-            <div class="item item-divider">
+            <div class="item item-divider" style="padding-bottom=5px;background:#66ccff;">
                 <span ng-bind="tip.author"></span>
                 <span> says: </span>
             </div>
             <div class="item item-text-wrap" ng-bind="tip.title">
             </div>  
         </div>
+        
+        <div ng-repeat=" tip in tips">
+         </div>   
+        
     </div>
 </div>
