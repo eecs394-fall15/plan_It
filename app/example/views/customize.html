@@ -23,7 +23,7 @@
       </span>
     
     <div class="list card">
-      <div ng-repeat = "suggestion in event.get('suggestions')">
+      <div ng-repeat = "suggestion in event.get('suggestions') | limitTo : listLimit">
         
 
         
@@ -45,6 +45,7 @@
     <div ng-if="morethan2suggestions({{event}})">
         <button>More..</button>
     </div>
+    <button ng-click="listLimit = event.get('suggestions').length" ng-show="event.get('suggestions').length > 2">More...</button>
 </div>
     
     <button class="button button-full button-calm">
