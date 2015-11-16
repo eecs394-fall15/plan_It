@@ -6,7 +6,7 @@ angular
     var itineraryId = null;
               
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
-                                               itineraryId =itinerary_id;
+                                               itineraryId =itinerary_id.id;
                                                });
 
     
