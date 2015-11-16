@@ -4,7 +4,7 @@ angular
 
     $scope.events = [];
     var itineraryId = null;
-              
+    $scope.listLimit = 2;          
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                itineraryId =itinerary_id.id;
                                                });
