@@ -20,7 +20,7 @@ angular
         query.equalTo("objectId", itineraryId);
         query.include("events");
         query.include("events.suggestions");
-        query.include("events.suggestions.tips"); 
+        //query.include("events.suggestions.tips"); 
         query.find({
             success: function(itinerary) {
             supersonic.logger.log("queried successfully");   
