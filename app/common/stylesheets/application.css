@@ -16,3 +16,40 @@
 #arrow{
  float:left;   
 }
+
+/*#event{
+    width: 80%;
+    margin-bottom: 10px; 
+}
+
+#time{
+    width: 18%;
+    float:left;
+    margin-right: 2px; 
+    margin-top: 10px; 
+}
+*/
+
+#event{
+    width: 80%;
+    margin-bottom: 10px; 
+}
+
+#time{
+    width: 18%;
+    float:left;
+    margin-right: 2px; 
+    margin-top: 10px; 
+}
+
+#suggHeader {
+   background: #66ccff;
+   padding: 5px 10px;
+   border-radius: 8px;
+}
+
+#save{
+    width: 12%;
+    margin-right: 2px; 
+    margin-top: 10px; 
+}
