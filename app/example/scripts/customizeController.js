@@ -28,7 +28,13 @@ angular
                 $scope.itenary = itinerary[0];
                 supersonic.logger.log(itinerary);
                  supersonic.logger.info(itinerary);
-                 $scope.events=itinerary[0].get("events");
+                 var eventsObj=itinerary[0].get("events")
+                     
+                  $scope.events = eventsObj.sort(function(a,b){
+                     a = new Date(a.get('time'));
+                     b = new Date(b.get('time')); 
+                      return a<b ? -1 : a>b ? 1 : 0;
+                 });
                         
      },
         error: function(error) {
