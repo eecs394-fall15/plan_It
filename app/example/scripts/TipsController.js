@@ -3,28 +3,26 @@ angular
   .controller('TipsController', function($scope,supersonic) {
     $scope.suggestion = null; 
     $scope.tips = []; 
+    $scope.authors = [];
     
     supersonic.ui.views.current.params.onValue( function (passedSuggestion) {
-      $scope.suggestion = JSON.parse(passedSuggestion.id); 
-        var tipsObj = JSON.parse(passedSuggestion.id).tips;
-        for (var i = 0; i < tipsObj.length;i++){
-            var tipObj = tipsObj[i];
-            var tipAuthor = tipObj.authorId;
-           
-            var User = Parse.Object.extend("_User"); 
-             var query = new Parse.Query(User); 
-            
-            query.equalTo("objectId",tipAuthor); 
+        var suggestionId = passedSuggestion.id; 
+        
+        var Suggestion = Parse.Object.extend("Suggestions"); 
+        var query = new Parse.Query(Suggestion); 
+         query.equalTo("objectId",suggestionId);
+         query.include("tips"); 
+         query.include("tips.author"); 
             query.find({
-                success: function(user){
-                    tipObj.author = user[0].get("username"); 
-                    supersonic.logger.log(tipObj);
+                success: function(suggestion){
+                   $scope.suggestion = suggestion[0]; 
+                   $scope.tips = suggestion[0].get("tips"); 
+                    
                 },
                 error: function(error){
-                 supersonic.logger.log(error);    
+                 supersonic.logger.log(error); 
+                  
                 }
             }); 
-            $scope.tips.push(tipObj);
-        }
     });
 });
