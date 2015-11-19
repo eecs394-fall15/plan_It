@@ -1,11 +1,10 @@
 <div class="padding" ng-controller="customizeController">
-
   <super-navbar>
     <super-navbar-title ng-bind="itenary.get('title')"></super-navbar-title>
   </super-navbar>
     
     
-<form>
+
 <div ng-repeat = "event in events" > 
     <span style="display: inline;">
   <button style="float:left;" class="button button-small button-calm col col-20 col-offset-0">
@@ -20,8 +19,8 @@
       </span>
     
     <div class="list card" >
-        <div ng-repeat = "suggestion in event.get('suggestions')">
-    <!--  <div ng-repeat = "suggestion in event.get('suggestions') | limitTo : listLimit"> -->
+
+      <div ng-repeat = "suggestion in event.get('suggestions') | limitTo : event.get('listLimit')"> 
           
           <div class="list" ng-class="{'textred': suggestion.get('isSaved')}">
 
@@ -36,15 +35,14 @@
          
 
     </div>
-        <!--  </div> -->
+
             </div>
-  <!--   <button style="float:right;" class="button button-small button-outline button-positive" ng-click="listLimit = event.get('suggestions').length" ng-show="event.get('suggestions').length > 2 ">More...</button> -->
+     <button style="float:right;" class="button button-small button-outline button-positive" ng-click="showMore(event.id)" ng-show="event.get('suggestions').length != event.get('listLimit')">More...</button>
         
-   <!-- <button ng-click="listLimit = 2" ng-show="listLimit != 2">Less...</button> -->
+   <button style="float:right;" class="button button-small button-outline button-positive" ng-click="showLess(event.id)" ng-show="event.get('listLimit') > 2">Less...</button>  
 </div>
     </div>
-    </form>  
+   
 </div> 
-
 
 
