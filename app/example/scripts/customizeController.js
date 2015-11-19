@@ -2,16 +2,8 @@ angular
   .module('example')
   .controller('customizeController', function($scope, supersonic) {
 
-//    $scope.listLimit = 2;
-    
-   // $scope.limits =[]; // for each event
-   
     $scope.events = [];
     var itineraryId = null;
-    
-   /* $scope.getListLimit = function(current){
-        return limits[current];
-    }; */
               
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                itineraryId =itinerary_id.id;
@@ -45,12 +37,11 @@ angular
                      b = new Date(b.get('time')); 
                       return a<b ? -1 : a>b ? 1 : 0;
                  });
-            var all=[];
+  
                 for (var i =0;i< $scope.events.length;i++){
-                    all.push(2);
-                }
                 
-                 $scope.limits = all;       
+                    $scope.events[i].set('listLimit',2).save();
+                }     
      },
         error: function(error) {
         supersonic.logger.log("query failed");
@@ -76,14 +67,9 @@ angular
             supersonic.logger.log("set isSaved");
             sug[0].save(null, {
               success: function(sug1) {
-                // Now let's update it with some new data. In this case, only cheatMode and score
-                // will get sent to the cloud. playerName hasn't changed.
                 supersonic.logger.log("sug saved ");
               }
-            });
-                
-                
-                        
+            });              
       },
         error: function(error) {
         supersonic.logger.log("query fsdfba failed");
@@ -107,6 +93,56 @@ angular
 
             sug[0].set("isSaved",false);
         //    supersonic.logger.log("set isSaved");
+            sug[0].save(null, {
+              success: function(sug1) {
+          //      supersonic.logger.log("sug saved ");
+              }
+            });                
+      },
+        error: function(error) {
+        supersonic.logger.log("query fsdfba failed");
+        }  
+      });
+    }
+    
+        $scope.showMore = function  (eventId) {
+      var Events = Parse.Object.extend("Events");
+      var event = new Events();
+      
+      
+      var query = new Parse.Query(Events);
+
+      query.equalTo("objectId", eventId);
+
+      query.find({
+            success: function(sug) {
+            sug[0].set("listLimit",sug[0].get('suggestions').length);
+
+            sug[0].save(null, {
+              success: function(sug1) {
+          //      supersonic.logger.log("sug saved ");
+              }
+            });                
+      },
+        error: function(error) {
+        supersonic.logger.log("query fsdfba failed");
+        }  
+      });
+    }
+        
+    $scope.showLess = function  (eventId) {
+      var Events = Parse.Object.extend("Events");
+      var event = new Events();
+      
+      
+      var query = new Parse.Query(Events);
+
+      query.equalTo("objectId", eventId);
+
+      query.find({
+            success: function(sug) {
+            sug[0].set("listLimit",2);
+
             sug[0].save(null, {
               success: function(sug1) {
           //      supersonic.logger.log("sug saved ");
