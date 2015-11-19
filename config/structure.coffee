@@ -46,3 +46,4 @@ module.exports =
     initialView:
       id: "initialView"
       location: "example#initial-view"
+
