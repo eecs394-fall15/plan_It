@@ -54,8 +54,12 @@ angular
 
       supersonic.logger.log("save Response callled"); 
 
-      tip.set("title", $scope.advisor.tip);
-      suggestion.set("title", $scope.advisor.suggestion);
+      tip.set("title", "hardcoded");
+      tip.set("authorId","9tc4bwB16S");
+      //tip.set("author",);
+
+        
+
 
 
 
@@ -68,6 +72,12 @@ angular
                 
             }
       }); 
+
+
+      suggestion.set("title", $scope.advisor.suggestion);
+      suggestion.set("isSaved", false);
+      suggestion.addUnique("tips",tip);
+
 
       suggestion.save(null, {
             success: function(q_sug) {
