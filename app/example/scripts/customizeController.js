@@ -4,13 +4,14 @@ angular
 
     $scope.events = [];
     var itineraryId = null;
-    $scope.listLimit = 2;          
+              
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                itineraryId =itinerary_id.id;
                                                });
 
     
     supersonic.ui.views.current.whenVisible(function() {
+        
         supersonic.logger.log("f1 called");
         
         var Itenary = Parse.Object.extend("Itinerary");
@@ -20,14 +21,15 @@ angular
         query.equalTo("objectId", itineraryId);
         query.include("events");
         query.include("events.suggestions");
-        //query.include("events.suggestions.tips"); 
+       // query.include("events.suggestions.tips"); 
+       // query.include("events.suggestions.tips.author"); 
         query.find({
             success: function(itinerary) {
             supersonic.logger.log("queried successfully");   
                 
                 $scope.itenary = itinerary[0];
-                supersonic.logger.log(itinerary);
-                 supersonic.logger.info(itinerary);
+            //    supersonic.logger.log(itinerary);
+            //     supersonic.logger.info(itinerary);
                  var eventsObj=itinerary[0].get("events")
                      
                   $scope.events = eventsObj.sort(function(a,b){
@@ -35,7 +37,11 @@ angular
                      b = new Date(b.get('time')); 
                       return a<b ? -1 : a>b ? 1 : 0;
                  });
-                        
+  
+                for (var i =0;i< $scope.events.length;i++){
+                
+                    $scope.events[i].set('listLimit',2).save();
+                }     
      },
         error: function(error) {
         supersonic.logger.log("query failed");
@@ -47,14 +53,10 @@ angular
     $scope.saveSuggestion = function  (suggestionId) {
       var Suggestions = Parse.Object.extend("Suggestions");
       var suggestions = new Suggestions();
-      $scope.sug_isSaved=false;
-      
       
       var query = new Parse.Query(Suggestions);
 
       query.equalTo("objectId", suggestionId);
-
-
 
       query.find({
             success: function(sug) {
@@ -65,42 +67,91 @@ angular
             supersonic.logger.log("set isSaved");
             sug[0].save(null, {
               success: function(sug1) {
-                // Now let's update it with some new data. In this case, only cheatMode and score
-                // will get sent to the cloud. playerName hasn't changed.
                 supersonic.logger.log("sug saved ");
               }
-            });
-                
-                
-                        
+            });              
       },
         error: function(error) {
         supersonic.logger.log("query fsdfba failed");
         }  
       });
-
-      
-      // suggestions.id= suggestionId;
-
-      // suggestions.set("isSaved",$scope.sug_isSaved);
-
-      // suggestions.save(null, {
-      //   success: function(suggestions) {
-
-      //     supersonic.logger.log("updated Suggestion");   
-      //     // Saved successfully.
-      //   },
-      //   error: function(suggestions, error) {
-      //     // The save failed.
-      //     // error is a Parse.Error with an error code and description.
-      //   }
-      // });
-
-
-
-
-
-      // body...
     }
+    
+    $scope.clearSuggestion = function  (suggestionId) {
+      var Suggestions = Parse.Object.extend("Suggestions");
+      var suggestions = new Suggestions();
+      
+      
+      var query = new Parse.Query(Suggestions);
 
+      query.equalTo("objectId", suggestionId);
+
+      query.find({
+            success: function(sug) {
+        //    supersonic.logger.log("found the sug"); 
+          //  supersonic.logger.log(sug); 
+
+            sug[0].set("isSaved",false);
+        //    supersonic.logger.log("set isSaved");
+            sug[0].save(null, {
+              success: function(sug1) {
+          //      supersonic.logger.log("sug saved ");
+              }
+            });                
+      },
+        error: function(error) {
+        supersonic.logger.log("query fsdfba failed");
+        }  
+      });
+    }
+    
+        $scope.showMore = function  (eventId) {
+      var Events = Parse.Object.extend("Events");
+      var event = new Events();
+      
+      
+      var query = new Parse.Query(Events);
+
+      query.equalTo("objectId", eventId);
+
+      query.find({
+            success: function(sug) {
+            sug[0].set("listLimit",sug[0].get('suggestions').length);
+
+            sug[0].save(null, {
+              success: function(sug1) {
+          //      supersonic.logger.log("sug saved ");
+              }
+            });                
+      },
+        error: function(error) {
+        supersonic.logger.log("query fsdfba failed");
+        }  
+      });
+    }
+        
+    $scope.showLess = function  (eventId) {
+      var Events = Parse.Object.extend("Events");
+      var event = new Events();
+      
+      
+      var query = new Parse.Query(Events);
+
+      query.equalTo("objectId", eventId);
+
+      query.find({
+            success: function(sug) {
+            sug[0].set("listLimit",2);
+
+            sug[0].save(null, {
+              success: function(sug1) {
+          //      supersonic.logger.log("sug saved ");
+              }
+            });                
+      },
+        error: function(error) {
+        supersonic.logger.log("query fsdfba failed");
+        }  
+      });
+    }
 });
