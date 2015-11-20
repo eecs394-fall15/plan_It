@@ -77,9 +77,9 @@ angular
             error: function(q_sug, error) {
                 
             }
-        }); 
+      }); 
 
-
+      supersonic.ui.layers.pop();
       
       
     }
