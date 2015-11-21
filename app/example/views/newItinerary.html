@@ -1,0 +1,11 @@
+<div class="padding" ng-controller="NewItinController">
+
+  <super-navbar>
+         <super-navbar-title ng-bind="name"></super-navbar-title>
+       <super-navbar-button side="right" location="example#newEvent" data-params-id="{{itinId}}"> <b id="plus">+</b></super-navbar-button>
+  </super-navbar>
+    <div ng-repeat="event in events">
+    <div ng-bind="event.get('title')"></div>
+    </div>
+
+</div>
