@@ -37,7 +37,7 @@
     </div>
 
             </div>
-     <button style="float:right;" class="button button-small button-outline button-positive" ng-click="showMore(event.id)" ng-show="event.get('suggestions').length != event.get('listLimit')">More...</button>
+     <button style="float:right;" class="button button-small button-outline button-positive" ng-click="showMore(event.id)" ng-show="(event.get('suggestions').length != event.get('listLimit')) && (event.get('suggestions').length != 0)">More...</button>
         
    <button style="float:right;" class="button button-small button-outline button-positive" ng-click="showLess(event.id)" ng-show="event.get('listLimit') > 2">Less...</button>  
 </div>
