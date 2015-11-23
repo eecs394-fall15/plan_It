@@ -28,7 +28,12 @@ angular
                         savedItin[0].addUnique("events",savedEvent);
                         savedItin[0].save(); 
                         
-                        supersonic.ui.layers.pop();
+                var view = new supersonic.ui.View("example#newItinerary");
+                supersonic.ui.layers.push(view, {
+                    params: {
+                        id: $scope.itinerary
+                    }
+                   });
                     },
                     error: function(error){
                      supersonic.logger.log(error); 

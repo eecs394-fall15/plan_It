@@ -1,15 +1,30 @@
 <div class="padding" ng-controller="AdvisorInputController">
 
   <super-navbar>
-    <super-navbar-title ng-bind="curr_event.get('title')"></super-navbar-title>
-      
   </super-navbar>
     
     
 	<form novalidate class="simple-form">
-	    Suggestion: <input type="text" ng-model="advisor.suggestion" /><br />
-	    Tip: <input type="text" ng-model="advisor.tip" /><br />
-	    <input type="button" ng-click="saveResponse()" value="Done" />
+	    <span> Suggestion: {{curr_event.get('title')}} @ 
+            	 <span ng-bind="curr_event.get('time') | date: 'shortTime'"></span>
+        </span>
+        
+    <label class="item item-input item-select">
+        <span class="input-label">Suggestions</span>
+            <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" ng-model="selected">
+        </select>
+      </label>
+        <label class="item item-input">
+        <span class="input-label">New Suggestion:</span>
+             <input type="text" ng-model="advisor.suggestion" />
+      </label>
+
+        <label class="item item-input">
+        <span class="input-label">Tip:</span>
+             <input type="text" ng-model="advisor.tip" />
+      </label>
+        <br>
+	    <button ng-click="saveResponse()">Done</button>
 	</form>
 
 </div> 
