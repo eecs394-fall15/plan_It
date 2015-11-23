@@ -54,7 +54,7 @@ angular
 
       supersonic.logger.log("save Response callled"); 
 
-      tip.set("title", "hardcoded");
+      tip.set("title", $scope.advisor.tip);
       tip.set("authorId","9tc4bwB16S");
       //tip.set("author",);
 
