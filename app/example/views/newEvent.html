@@ -1,37 +1,37 @@
 <div class="padding" ng-controller="NewEventController">
     
     <form>
-    <div class="list">
-        <div class="item item-divider">
-   <span> What are you looking for...?</span>
-            </div>
-        
-         <div class="item item-divider">
-    <span class="input-label">Looking For:</span>
-            </div>
-     <label class="item item-input">
-            <input type="text" ng-model="event.title">
-        </label>
-        
-          <div class="item item-divider">
-     <span class="input-label">When do you plan to go...?</span>
-            </div>
-     <label class="item item-input">
-            <input type="time" ng-model="event.time">
-        </label>
-        
-        <div class="item item-divider">
-   <span class="input-label">Additional Preferences:</span>
-            </div>
-     <label class="item item-input">
-           <textarea cols="40" rows="5" type="text" ng-model="event.additional"></textarea>
-        </label>
-        <br>
-    <button ng-click="submitEvent()" class="button button-royal">Done</button>
-        <button ng-click="back()" class="button button-calm">Cancel</button>
+        <div class="list">
+            <div class="item item-divider">
+            <label class="item item-input item-select">
+                <span class="input-label">What are you looking for...?</span>
+                <select ng-options= "idea as idea.title for idea in ideas track by idea.id" ng-model="selected">
+                </select>
+              </label>
+                    </div>
+                 <div class="item item-divider">
+            <span class="input-label">Custom Looking For:</span>
+                    </div>
+             <label class="item item-input">
+                    <input type="text" ng-model="event.title">
+                </label>
+
+                  <div class="item item-divider">
+             <span class="input-label">When do you plan to go...?</span>
+                    </div>
+             <label class="item item-input">
+                    <input type="time" ng-model="event.time">
+                </label>
+
+                <div class="item item-divider">
+           <span class="input-label">Additional Preferences:</span>
+                    </div>
+             <label class="item item-input">
+                   <textarea cols="40" rows="5" type="text" ng-model="event.additional"></textarea>
+                </label>
+                <br>
+            <button ng-click="submitEvent()" class="button button-royal">Done</button>
+            <button ng-click="back()" class="button button-calm">Cancel</button>
         </div>
-</form>
-        
-    
-    
+    </form>
 </div>
