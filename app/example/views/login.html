@@ -20,24 +20,25 @@
 
 
     <div ng-show="currentUser">
-    <h2>Welcome {{currentUser.get('username')}}</h2>
-    <p>You have been successfully logged in</p>
-    <div>
-      <p>Continue as...</p>
-    </div>
+      <h2>Welcome {{currentUser.get('username')}}</h2>
+      
+      <div>
+        <p>You have been successfully logged in</p>
+        <p>Continue as...</p>
+      </div>
 
-    <super-navigate location="example#getting-started">
-        <button class="button button-block button-positive"><h3 style="color:#FFFFFF">Traveller</h3></button>
-    </super-navigate>
+      <super-navigate location="example#getting-started">
+          <button class="button button-block button-positive"><h3 style="color:#FFFFFF">Traveller</h3></button>
+      </super-navigate>
 
-    <super-navigate location="example#feed">
-        <button class="button button-block button-positive"><h3 style="color:#FFFFFF">Advisor</h3></button>
-    </super-navigate>
+      <super-navigate location="example#feed">
+          <button class="button button-block button-positive"><h3 style="color:#FFFFFF">Advisor</h3></button>
+      </super-navigate>
 
-    
-    
-
-    <button class="btn btn-lg btn-block btn-danger"ng-click="logOut()">Log out</button>
+      <div>
+        <button class="btn btn-lg btn-block btn-danger"ng-click="logOut()">Log out</button>
+      </div>
+      
     </div>
 
 
