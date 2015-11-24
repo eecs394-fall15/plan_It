@@ -35,7 +35,9 @@
                     <i ng-show="suggestion.get('isSaved') == true" ng-click="clearSuggestion(suggestion.id)" class="super-ios-checkmark"></i>
                     <span ng-bind="suggestion.get('title')"> </span>
                     <super-navigate data-params-id="{{suggestion.id}}" location="example#tips">
-                        <i ng-show="suggestion.get('tips').length > 0" class="icon super-chatboxes" ></i>
+                        <button ng-show="suggestion.get('tips').length > 0">
+                        <i class="icon super-chatboxes" ></i>
+                        </button>
                     </super-navigate>
                 </div>
             </div>
