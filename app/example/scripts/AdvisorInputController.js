@@ -3,13 +3,13 @@ angular
   .controller('AdvisorInputController', function($scope, supersonic) {
 
     
-    var eventId = null;
+    $scope.eventId = null;
     $scope.curr_event =null;
     $scope.advisor={};
     $scope.suggestions=[];
           
     supersonic.ui.views.current.params.onValue(function(in_eventId){
-                                               eventId =in_eventId.id;
+                                               $scope.eventId =in_eventId.id;
                                                });
 
     
@@ -19,7 +19,7 @@ angular
         var Event = Parse.Object.extend("Events");
         var query = new Parse.Query(Event);
         
-        query.equalTo("objectId", eventId);
+        query.equalTo("objectId", $scope.eventId);
         
         query.include("suggestions");
         //query.include("events.suggestions.tips"); 
@@ -55,15 +55,9 @@ angular
       var Tip = Parse.Object.extend("Tip");
       var tip = new Tip();
 
-      supersonic.logger.log("save Response callled"); 
-
       tip.set("title", $scope.advisor.tip);
       tip.set("authorId","9tc4bwB16S");
       //tip.set("author",);
-
-        
-
-
 
 
       tip.save(null, {
@@ -76,7 +70,7 @@ angular
             }
       }); 
 
-   //     if ($scope.advisor.suggestion){
+     if ($scope.advisor.suggestion){
              suggestion.set("title", $scope.advisor.suggestion);
              suggestion.set("isSaved", false);
              suggestion.addUnique("tips",tip);
@@ -85,15 +79,27 @@ angular
               suggestion.save(null, {
                     success: function(q_sug) {
                         supersonic.logger.log("saved suggestion");  
+                        
+                        var Event = Parse.Object.extend("Events");
+                        var query = new Parse.Query(Event);
+                        query.equalTo("objectId", $scope.eventId);
+                        query.find({
+                            success: function(q_events) {
+                                var current_event = q_events[0];
+                                current_event.addUnique("suggestions",q_sug);
+                                current_event.save();    
+                         },
+                            error: function(error) {
+                            supersonic.logger.log("query q_events failed");
+                            }  
+                            });
                     },
                     error: function(q_sug, error) {
 
                     }
               });
-  //          $scope.curr_event.addUnique("suggestions",suggestion);
-    //        $scope.curr_event.save();
- //       }
-/*        else {        // saving tip to existing suggestions
+       }
+        else {        // saving tip to existing suggestions
             var query = new Parse.Query("Suggestions");
             var suggindex = $scope.selected.id;
             var objid = $scope.suggestions[suggindex].objectid;
@@ -102,15 +108,11 @@ angular
                 success: function(result){
                     result[0].addUnique("tips",tip);
                     result[0].save(); 
-                    
-                    $scope.curr_event.addUnique("suggestions",result[0]);
-                    $scope.curr_event.save();
-                    
                 },
                 error: function(err){
                 }
             });
-        }*/
+        }
 
       supersonic.ui.layers.pop();
       
