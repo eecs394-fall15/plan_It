@@ -23,7 +23,7 @@ angular
 
 
   $scope.currUser = Parse.User.current().id;
-  supersonic.logger.log("yo id is "+$scope.currUser);
+  supersonic.logger.log("yo id is "+ $scope.currUser);
 
 
 
@@ -31,7 +31,7 @@ angular
   supersonic.ui.views.current.whenVisible(function() {
 
        $scope.currUser = Parse.User.current().id;
-  supersonic.logger.log("yo id is "+$scope.currUser);
+  supersonic.logger.log("yo id is "+ $scope.currUser);
     
 });
 

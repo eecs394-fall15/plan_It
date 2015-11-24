@@ -10,19 +10,19 @@ module.exports =
       location: "example#getting-started" # Supersonic module#view type navigation
     }
     {
-      title: "Settings"
+      title: "Home"
       id: "settings"
-      location: "example#settings"
+      location: "example#home"
     }
     {
-      title: "Internet"
+      title: "Login"
       id: "internet"
-      location: "http://google.com" # URLs are supported!
+      location: "example#login" # URLs are supported!
     }
   ]
 
   rootView:
-    location: "example#getting-started"
+    location: "example#home"
 
   preloads: [
     {
@@ -43,7 +43,7 @@ module.exports =
     options:
       animation: "swingingDoor"
   
-    initialView:
-      id: "initialView"
-      location: "example#initial-view"
+  initialView:
+    id: "initialView"
+    location: "example#login"
 
