@@ -51,11 +51,12 @@ angular
                     
         // check if user already has existing input for this event
     if ($scope.allResponders.length > 0) { 
-        if ($scope.allResponders.indexOf("9tc4bwB16S") > -1) { //////////// Change from hardcoded 
+        if ($scope.allResponders.indexOf(Parse.User.current().id) > -1) { //////////// Change from hardcoded 
             $scope.responded.value = true; 
             
             var squery = new  Parse.Query("Suggestions");
-            squery.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
+            //squery.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
+            squery.equalTo("authorId", Parse.User.current().id);
             squery.equalTo("itineraryId",$scope.itineraryId); 
             squery.find({
                 success: function(result){
@@ -67,7 +68,8 @@ angular
             }); 
             
             var tquery = new Parse.Query("Tip");
-            tquery.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
+            //tquery.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
+            tquery.equalTo("authorId", Parse.User.current().id);  
             tquery.equalTo("itineraryId",$scope.itineraryId); 
             tquery.find({
                 success: function(result){
@@ -99,7 +101,8 @@ angular
         
         
         var tip_query = new Parse.Query("Tip");
-            tip_query.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
+            //tip_query.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
+            tip_query.equalTo("authorId", Parse.User.current().id);
             tip_query.equalTo("eventid",$scope.eventId); 
             tip_query.find({
                 success: function(tip_r){
@@ -130,7 +133,8 @@ angular
       var tip = new Tip();
 
       tip.set("title", $scope.advisor.tip);
-      tip.set("authorId","9tc4bwB16S");
+      //tip.set("authorId","9tc4bwB16S"); ////////Change from hradcoded
+      tip.set("authorId",Parse.User.current().id); 
       tip.set("published",false); 
       tip.set("itineraryId", $scope.itineraryId);
       tip.set("eventid",$scope.eventId); 
@@ -169,7 +173,8 @@ angular
                             success: function(q_events) {
                                 var current_event = q_events[0];
                                 current_event.addUnique("suggestions",q_sug);
-                                current_event.addUnique("responders","9tc4bwB16S"); //////// change from hardcoded 
+                                //current_event.addUnique("responders","9tc4bwB16S"); //////// change from hardcoded 
+                                current_event.addUnique("responders",Parse.User.current().id);
                                 current_event.save();    
                          },
                             error: function(error) {
