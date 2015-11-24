@@ -21,6 +21,7 @@ angular
         query.equalTo("objectId", itineraryId);
         query.include("events");
         query.include("events.suggestions");
+        query.include("events.chosen");
        // query.include("events.suggestions.tips"); 
        // query.include("events.suggestions.tips.author"); 
         query.find({
@@ -50,7 +51,7 @@ angular
 
     });
 
-    $scope.saveSuggestion = function  (suggestionId) {
+    $scope.saveSuggestion = function  (suggestionId,eventId) {
       var Suggestions = Parse.Object.extend("Suggestions");
       var suggestions = new Suggestions();
       
@@ -60,16 +61,25 @@ angular
 
       query.find({
             success: function(sug) {
-            supersonic.logger.log("found the sug"); 
-            supersonic.logger.log(sug); 
 
             sug[0].set("isSaved",true);
-            supersonic.logger.log("set isSaved");
             sug[0].save(null, {
               success: function(sug1) {
-                supersonic.logger.log("sug saved ");
-              }
-            });              
+                
+                  
+                var query = new Parse.Query("Events");
+                  query.equalTo("objectId", eventId);
+                  query.find({
+                        success: function(ev) {
+                        ev[0].set("isChosen",true);
+                        ev[0].set("chosen", sug1);
+                        ev[0].save();
+                        }
+                    });              
+                },
+                error: function(error) {
+                }
+                });                   
       },
         error: function(error) {
         supersonic.logger.log("query fsdfba failed");
@@ -77,7 +87,18 @@ angular
       });
     }
     
-    $scope.clearSuggestion = function  (suggestionId) {
+    $scope.showAll = function (eventId) {
+        var query = new Parse.Query("Events");
+        query.equalTo("objectId", eventId);
+        query.find({
+        success: function(ev) {
+                        ev[0].set("isChosen",false);
+                        ev[0].save();
+                        }
+                    }); 
+    };
+    
+    $scope.clearSuggestion = function (suggestionId) {
       var Suggestions = Parse.Object.extend("Suggestions");
       var suggestions = new Suggestions();
       
