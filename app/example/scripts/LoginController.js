@@ -19,8 +19,8 @@ angular
         $rootScope.currentUser = user;
         $scope.scenario = 'Logged in';
         $scope.$apply(); // Notify AngularJS to sync currentUser
-        var animation = supersonic.ui.animate("curlDown");
-        supersonic.ui.initialView.dismiss(animation);
+        //var animation = supersonic.ui.animate("curlDown");
+        //supersonic.ui.initialView.dismiss(animation);
       },
       error: function(user, error) {
         alert("Unable to sign up:  " + error.code + " " + error.message);
@@ -34,8 +34,8 @@ angular
         $rootScope.currentUser = user;
         $scope.scenario = 'Logged in';
         $scope.$apply();
-        var animation = supersonic.ui.animate("curlDown");
-        supersonic.ui.initialView.dismiss(animation);
+        //var animation = supersonic.ui.animate("curlDown");
+        //supersonic.ui.initialView.dismiss(animation);
       },
       error: function(user, error) {
         alert("Unable to log in: " + error.code + " " + error.message);

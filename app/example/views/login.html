@@ -22,6 +22,10 @@
     <div ng-show="currentUser">
     <h2>Welcome {{currentUser.get('username')}}</h2>
     <p>You have been successfully logged in</p>
+
+    
+    <super-navigate location="example#home">Continue</super-navigate>
+    
     <button class="btn btn-lg btn-block btn-danger"ng-click="logOut()">Log out</button>
     </div>
 
