@@ -8,6 +8,7 @@ angular
         var itenerary = new Itenerary(); 
         
         itenerary.set("title",$scope.template.city); 
+        itenerary.set("author", Parse.User.current());
         // itenerary.set("country",$scope.template.country);
         // itenerary.set("date",$scope.template.date); 
         

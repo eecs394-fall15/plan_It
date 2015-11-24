@@ -9,7 +9,7 @@ angular
         supersonic.logger.info("feed visible"); 
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
-        query.notEqualTo("author", Parse.user.current());
+        query.notEqualTo("author", Parse.User.current());
         query.find({
             success: function (results) {
             $scope.ites = results; 

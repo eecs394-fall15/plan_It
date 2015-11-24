@@ -16,6 +16,9 @@ angular
         newEvent.set("listLimit",2); 
         newEvent.set("additional",$scope.event.additional); 
         newEvent.set("suggestions",[]);
+        newEvent.set("author", Parse.User.current());
+        newEvent.set("published",false);
+
         
         newEvent.save(null, {
             success: function(savedEvent){
