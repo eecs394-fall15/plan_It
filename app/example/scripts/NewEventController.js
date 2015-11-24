@@ -2,6 +2,8 @@ angular
   .module('example')
   .controller('NewEventController', function($scope,supersonic) {
     $scope.event={};
+    $scope.ideas=[{title:"breakfast",id:0},{title:"amusement parks",id:1}];
+    $scope.selected =null;
     
     supersonic.ui.views.current.params.onValue( function (itineraryId) {
         $scope.itinerary = itineraryId.id; 
@@ -11,7 +13,14 @@ angular
         
         var dbevent = Parse.Object.extend("Events"); 
         var newEvent = new dbevent(); 
-        newEvent.set("title", $scope.event.title); 
+        if ($scope.event.title){
+            newEvent.set("title", $scope.event.title);
+        }
+        else{
+            var eventindex = $scope.selected.id;
+            var eventobj = $scope.ideas[eventindex];
+            newEvent.set("title",eventobj.title); 
+        }
         newEvent.set("time", $scope.event.time); 
         newEvent.set("listLimit",2); 
         newEvent.set("additional",$scope.event.additional); 
