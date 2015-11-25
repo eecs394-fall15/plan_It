@@ -7,6 +7,7 @@ angular
 
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
+        query.equalTo(author,Parse.User.current());
         query.find({
             success: function (results) {
             $scope.iterneraries = results; 
