@@ -1,4 +1,3 @@
-
 angular
   .module('example')
   .controller('AdvisorInputController', function($scope, supersonic) {
@@ -10,6 +9,9 @@ angular
     $scope.suggestions=[];
     $scope.inputInfo = {};
     $scope.responded = {value:false};
+    
+     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
           
     supersonic.ui.views.current.params.onValue(function(sentvals){
         $scope.eventId =sentvals.eventid;
@@ -101,14 +103,13 @@ angular
         
         
         var tip_query = new Parse.Query("Tip");
-            //tip_query.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
             tip_query.equalTo("authorId", Parse.User.current().id);
             tip_query.equalTo("eventid",$scope.eventId); 
             tip_query.find({
                 success: function(tip_r){
                     tip_arr = tip_r;
                     
-                     if (tip_arr.length > 0){
+                     if (tip_arr.length > 0){ // if past entry for tip, resave existing entry 
                          tip_r[0].set('title',$scope.advisor.tip);
                          tip_r[0].save();
                      }
@@ -133,12 +134,11 @@ angular
       var tip = new Tip();
 
       tip.set("title", $scope.advisor.tip);
-      //tip.set("authorId","9tc4bwB16S"); ////////Change from hradcoded
       tip.set("authorId",Parse.User.current().id); 
       tip.set("published",false); 
       tip.set("itineraryId", $scope.itineraryId);
       tip.set("eventid",$scope.eventId); 
-      //tip.set("author",);
+      tip.set("author",Parse.User.current());
 
 
       tip.save(null, {
@@ -151,15 +151,16 @@ angular
             }
       }); 
 
-     if ($scope.advisor.suggestion){
+     if ($scope.advisor.suggestion){   // If user entered a new suggestion 
+         supersonic.logger.log("new suggestion input"); 
              suggestion.set("title", $scope.advisor.suggestion);
              suggestion.set("isSaved", false);
              suggestion.addUnique("tips",tip);
              suggestion.set("published",false); 
-             suggestion.set("itineraryId", $scope.itineraryId);
-             suggestion.set("authorId", "9tc4bwB16S"); 
+             suggestion.set("itineraryId", $scope.itineraryId); 
              suggestion.set("eventid",$scope.eventId);
-            // suggestion.set("author",
+             suggestion.set("author",Parse.User.current());
+            suggestion.set("authorId",Parse.User.current().id); 
 
 
               suggestion.save(null, {
