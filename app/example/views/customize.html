@@ -1,18 +1,26 @@
 <div class="padding" ng-controller="customizeController">
   <super-navbar>
     <super-navbar-title ng-bind="itenary.get('title')"></super-navbar-title>
+      <super-navbar-button side="right" location="example#newEvent" data-params-id="{{itenary.id}}"> <b id="plus">ADD</b></super-navbar-button>
   </super-navbar>
     
-    
+    <div ng-show="events.length == 0">
+        <p style="margin-top:10%; font-size:2em; color:white">
+            No events added yet
+        </p>
+        <p style="margin-top:2%; font-size:2em; color:white">
+            Click 'ADD' 
+        </p>
+    </div>
 
     <div ng-repeat = "event in events" > 
         <div class="list card">
         <span style="display: inline;">
-            <div style="float:left; background-color:#e5ffff" class="item item-divider col col-25 col-offset-0">
+            <div style="float:left" class="item item-divider col col-25 col-offset-0 label-padding button-light">
                 <span ng-bind="event.get('time') | date: 'shortTime'"></span>
             </div>
 
-            <div style="outline:2px solid #1aa3ff; font-weight:bold; font-size:18px;" class="item item-divider col col-75 col-offset-25"> 
+            <div style="font-weight:bold; font-size:18px;" class="item item-divider col col-75 col-offset-25 label-dark label-padding"> 
                   Ideas for
                   <span ng-bind="event.get('title')" ></span>
             </div>
@@ -54,7 +62,6 @@
     </div>
    </div>
 </div> 
-    
     
     
     
