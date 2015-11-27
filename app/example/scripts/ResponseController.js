@@ -4,7 +4,11 @@ angular
 
     $scope.events = [];
     $scope.itineraryId = null;
-    $scope.listLimit = 2;          
+    $scope.listLimit = 2;       
+    
+     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
+    
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                $scope.itineraryId =itinerary_id.id;
                                                });
@@ -101,9 +105,9 @@ angular
         });
         
         var sugg_query = new Parse.Query("Suggestions");
-        sugg_query.equalTo("authorId","9tc4bwB16S");    // Change to dynamic for login & author field
+        sugg_query.equalTo("authorId",Parse.User.current().id);   
         sugg_query.equalTo("itineraryId", $scope.itineraryId);
-         //  sugg_query.equalTo("author",  Change to dynamic for login & author field
+       // sugg_query.equalTo("author", Parse.User.current()); 
         sugg_query.find({
             success: function(currSuggs){
                 for (var i = 0; i < currSuggs.length; i++){
