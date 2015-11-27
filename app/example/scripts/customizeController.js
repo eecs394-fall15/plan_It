@@ -4,6 +4,9 @@ angular
 
     $scope.events = [];
     var itineraryId = null;
+    
+    // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
               
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                itineraryId =itinerary_id.id;
@@ -16,7 +19,6 @@ angular
         
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
-        //var iternaryIdstr="1AtJcYGjFs";
         
         query.equalTo("objectId", itineraryId);
         query.include("events");
