@@ -1,12 +1,12 @@
 <div ng-controller= "LoginController" class="container padding">
     
   <form ng-show="scenario == 'Sign up'" role="form">
-    <div style="font-size:5em; text-align:center; margin-top:23%; color:white">
+    <div style="font-size:5em; text-align:center; margin-top:23%;">
             Holiday
         </div>
         <br>
         <br>
-        <div style="font-size:5em; text-align:center; color:white;">
+        <div style="font-size:5em; text-align:center;">
             PlanIt
         </div> 
     <br>
@@ -27,16 +27,16 @@
       <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" ng-click="signUp(user)">
             Sign Up
         </button>
-       <button style="margin-top:40%; text-align:center; margin-left:40%;" ng-click='scenario="Log in"' class="button button-dark">
+       <button style="margin-top:26%; text-align:center; margin-left:40%;" ng-click='scenario="Log in"' class="button button-dark">
             Log In 
         </button>
   </form>
 
 
     <div ng-show="currentUser">
-      <h1 style="margin-top:7%; horizontal-align:middle; color:white;">Welcome {{currentUser.get('username')}}</h1>
+      <h1 style="margin-top:7%; horizontal-align:middle;">Welcome {{currentUser.get('username')}}</h1>
       
-      <div style="margin-top:7%; color:white; font-size:2em;">
+      <div style="margin-top:7%; font-size:2em;">
         <p>You have been successfully logged in</p>
         <p style="margin-top:10%;">Continue as...</p>
       </div>
@@ -57,12 +57,12 @@
 
 
     <form ng-show="scenario == 'Log in'" role="form">
-        <div style="font-size:5em; text-align:center; margin-top:23%; color:white">
+        <div style="font-size:5em; text-align:center; margin-top:23%;">
             Holiday
         </div>
         <br>
         <br>
-        <div style="font-size:5em; text-align:center; color:white;">
+        <div style="font-size:5em; text-align:center;">
             PlanIt
         </div> 
         <br>
