@@ -4,12 +4,16 @@
   </super-navbar>
 
 	<form novalidate class="simple-form">
-	    <span> Suggestion: {{curr_event.get('title')}} @ 
+        
+        <div class="item item-divider label-dark">
+           <span class="input-label label-dark">Suggestion for {{curr_event.get('title')}} @ 
             	 <span ng-bind="curr_event.get('time') | date: 'shortTime'"></span>
-        </span>
+            </span>
+        </div>
+        
     <div ng-show="!responded.value">    
     <label class="item item-input item-select">
-        <span class="input-label">Suggestions</span>
+        <span class="input-label"> Past Suggestions</span>
             <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" ng-model="selected">
         </select>
       </label>
@@ -17,10 +21,13 @@
         <span class="input-label">New Suggestion:</span>
              <input type="text" ng-model="advisor.suggestion" />
       </label>
-        <label class="item item-input">
-        <span class="input-label">Tip:</span>
-             <textarea cols="40" rows="5" type="text" ng-model="advisor.tip"></textarea>
-      </label>
+        
+        <div class="item item-divider label-dark">
+           <span class="input-label label-dark">Tip:</span>
+                    </div>
+             <label class="item item-input">
+                   <textarea cols="40" rows="5" type="text" ng-model="advisor.tip"></textarea>
+                </label>
      </div>
         
      <div ng-show="responded.value">
@@ -40,7 +47,7 @@
 
 
         <br>
-	    <button ng-click="saveResponse()">Done</button>
+	    <button ng-click="saveResponse()" class="button button-light">Done</button>
 	</form>
 
 </div> 
