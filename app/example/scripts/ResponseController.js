@@ -3,10 +3,10 @@ angular
   .controller('ResponseController', function($scope, supersonic) {
 
     $scope.events = [];
-    var itineraryId = null;
+    $scope.itineraryId = null;
     $scope.listLimit = 2;          
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
-                                               itineraryId =itinerary_id.id;
+                                               $scope.itineraryId =itinerary_id.id;
                                                });
 
     
@@ -17,7 +17,7 @@ angular
         var query = new Parse.Query(Itenary);
         //var iternaryIdstr="1AtJcYGjFs";
         
-        query.equalTo("objectId", itineraryId);
+        query.equalTo("objectId", $scope.itineraryId);
         query.include("events");
         //query.include("events.suggestions");
         //query.include("events.suggestions.tips"); 
@@ -42,6 +42,17 @@ angular
         });
 
     });
+    
+    $scope.giveResponse = function(eventId) {
+        var view = new supersonic.ui.View("example#advisorinput");
+        supersonic.ui.layers.push(view, {
+            params: {
+                    eventid: eventId,
+                    itinid: $scope.itineraryId
+                }
+        });
+        
+    }
 
     $scope.saveSuggestion = function  (suggestionId) {
       var Suggestions = Parse.Object.extend("Suggestions");
@@ -53,8 +64,6 @@ angular
 
       query.equalTo("objectId", suggestionId);
 
-
-
       query.find({
             success: function(sug) {
             supersonic.logger.log("found the sug"); 
@@ -64,22 +73,49 @@ angular
             supersonic.logger.log("set isSaved");
             sug[0].save(null, {
               success: function(sug1) {
-                // Now let's update it with some new data. In this case, only cheatMode and score
-                // will get sent to the cloud. playerName hasn't changed.
                 supersonic.logger.log("sug saved ");
               }
-            });
-                
-                
-                        
+            });           
       },
         error: function(error) {
         supersonic.logger.log("query fsdfba failed");
         }  
-      });
-
-      
-      
+      });  
     }
 
+    $scope.submitResponse = function(){ // set suggestions and tips as published 
+        var tip_query = new Parse.Query("Tip");
+        tip_query.equalTo("authorId","9tc4bwB16S");    
+      //  tip_query.equalTo("author",  Change to dynamic for login & author field
+        tip_query.equalTo("itineraryId", $scope.itineraryId);
+        tip_query.find({
+            success: function(currTips){
+                for (var i = 0; i < currTips.length; i++){
+                    var currTip = currTips[i];
+                    currTip.set("published", true); 
+                    currTip.save(); 
+                }
+            },
+            error: function(err){
+            }
+        });
+        
+        var sugg_query = new Parse.Query("Suggestions");
+        sugg_query.equalTo("authorId","9tc4bwB16S");    // Change to dynamic for login & author field
+        sugg_query.equalTo("itineraryId", $scope.itineraryId);
+         //  sugg_query.equalTo("author",  Change to dynamic for login & author field
+        sugg_query.find({
+            success: function(currSuggs){
+                for (var i = 0; i < currSuggs.length; i++){
+                    var currSugg = currSuggs[i];
+                    currSugg.set("published", true); 
+                    currSugg.save(); 
+                }
+            },
+            error: function(err){
+            }
+        });
+        
+        
+    }
 });

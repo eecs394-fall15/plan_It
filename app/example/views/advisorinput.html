@@ -1,18 +1,46 @@
 <div class="padding" ng-controller="AdvisorInputController">
 
   <super-navbar>
-    <super-navbar-title ng-bind="curr_event.get('title')"></super-navbar-title>
-      
   </super-navbar>
-    
-    
+
 	<form novalidate class="simple-form">
-	    Suggestion: <input type="text" ng-model="advisor.suggestion" /><br />
-	    Tip: <input type="email" ng-model="advisor.tip" /><br />
-	    <input type="button" ng-click="saveResponse()" value="Done" />
+	    <span> Suggestion: {{curr_event.get('title')}} @ 
+            	 <span ng-bind="curr_event.get('time') | date: 'shortTime'"></span>
+        </span>
+    <div ng-show="!responded.value">    
+    <label class="item item-input item-select">
+        <span class="input-label">Suggestions</span>
+            <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" ng-model="selected">
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">New Suggestion:</span>
+             <input type="text" ng-model="advisor.suggestion" />
+      </label>
+        <label class="item item-input">
+        <span class="input-label">Tip:</span>
+             <textarea cols="40" rows="5" type="text" ng-model="advisor.tip"></textarea>
+      </label>
+     </div>
+        
+     <div ng-show="responded.value">
+         
+          <label class="item item-input">
+        <span class="input-label">Current Suggestion:</span>
+         <span ng-bind="inputInfo.sugg"></span> 
+      </label>
+          <label class="item item-input">
+        <span class="input-label">Current Tip:</span>
+         <span ng-bind="inputInfo.tip"></span> 
+      </label>
+         
+         <br>
+         <button ng-click="changeSugg()">Change</button>
+     </div>
+
+
+        <br>
+	    <button ng-click="saveResponse()">Done</button>
 	</form>
 
 </div> 
-
-
-

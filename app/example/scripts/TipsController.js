@@ -5,9 +5,13 @@ angular
     $scope.tips = []; 
     $scope.authors = [];
     
+    var suggestionId = null;
+    
     supersonic.ui.views.current.params.onValue( function (passedSuggestion) {
-        var suggestionId = passedSuggestion.id; 
-        
+        suggestionId = passedSuggestion.id; 
+    });
+    
+        supersonic.ui.views.current.whenVisible(function() {
         var Suggestion = Parse.Object.extend("Suggestions"); 
         var query = new Parse.Query(Suggestion); 
          query.equalTo("objectId",suggestionId);
@@ -15,6 +19,7 @@ angular
          query.include("tips.author"); 
             query.find({
                 success: function(suggestion){
+                    supersonic.logger.log(suggestion); 
                    $scope.suggestion = suggestion[0]; 
                    $scope.tips = suggestion[0].get("tips"); 
                     
@@ -24,5 +29,6 @@ angular
                   
                 }
             }); 
-    });
+        }); 
+
 });
