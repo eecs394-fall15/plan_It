@@ -3,7 +3,10 @@ angular
   .controller('NewEventController', function($scope,supersonic) {
     $scope.event={};
     $scope.ideas=[{title:"breakfast",id:0},{title:"amusement parks",id:1}];
-    $scope.selected =null;
+    $scope.selected = $scope.ideas[0];
+    
+     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
     
     supersonic.ui.views.current.params.onValue( function (itineraryId) {
         $scope.itinerary = itineraryId.id; 
@@ -27,20 +30,21 @@ angular
         newEvent.set("suggestions",[]);
         newEvent.set("author", Parse.User.current());
         newEvent.set("published",false);
-
+        newEvent.set("responders",[]); 
+        newEvent.set("isChosen",false);  
+        
         
         newEvent.save(null, {
-            success: function(savedEvent){
+            success: function(savedEvent){   // event object
 
-                var itinerary = Parse.Object.extend("Itinerary"); 
-                var query = new Parse.Query(itinerary); 
+                var query = new Parse.Query("Itinerary"); 
                 query.equalTo("objectId",$scope.itinerary);
                 query.find({
                     success: function(savedItin){
                         savedItin[0].addUnique("events",savedEvent);
                         savedItin[0].save(); 
                         
-                var view = new supersonic.ui.View("example#newItinerary");
+                var view = new supersonic.ui.View("example#customize");       
                 supersonic.ui.layers.push(view, {
                     params: {
                         id: $scope.itinerary
