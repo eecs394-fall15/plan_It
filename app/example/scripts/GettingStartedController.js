@@ -2,6 +2,9 @@ angular
   .module('example')
   .controller('GettingStartedController', function($scope, supersonic) {
     $scope.iterneraries = null;
+    
+    // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
 
         supersonic.ui.views.current.whenVisible(function() {
 
