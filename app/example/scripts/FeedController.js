@@ -12,6 +12,7 @@ angular
         
         var query = new Parse.Query("Itinerary");
         query.notEqualTo("author", Parse.User.current());
+        query.equalTo("published",true); 
         query.find({
             success: function (results) {
                 supersonic.logger.log("feedcontroller successful query");
