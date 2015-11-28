@@ -32,6 +32,7 @@ angular
         newEvent.set("published",false);
         newEvent.set("responders",[]); 
         newEvent.set("isChosen",false);  
+        newEvent.set("itineraryId",$scope.itinerary);
         
         
         newEvent.save(null, {
