@@ -14,6 +14,7 @@ angular
         itenerary.set("title",$scope.template.city); 
         itenerary.set("author", Parse.User.current());
         itenerary.set("events",[]); 
+        itenerary.set("published",false); 
         // itenerary.set("country",$scope.template.country);
         // itenerary.set("date",$scope.template.date); 
         
