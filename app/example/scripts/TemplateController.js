@@ -22,7 +22,7 @@ angular
             success: function(itenerary) {
                 supersonic.logger.log("itenerary successfully saved!!!!");
          
-                var view = new supersonic.ui.View("example#customize");
+                var view = new supersonic.ui.View("example#newEvent");
                 supersonic.ui.layers.push(view, {
                     params: {
                         id: itenerary.id
