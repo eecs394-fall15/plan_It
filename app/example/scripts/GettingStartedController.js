@@ -10,9 +10,11 @@ angular
 
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
-        query.equalTo(author,Parse.User.current());
+        
+        query.equalTo("author",Parse.User.current());
         query.find({
             success: function (results) {
+                supersonic.logger.log(results);
             $scope.iterneraries = results; 
     },
     error: function (error) {
