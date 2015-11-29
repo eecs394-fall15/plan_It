@@ -15,6 +15,7 @@
     <label class="item item-input item-select">
         <span class="input-label"> Past Suggestions</span>
             <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" ng-model="selected">
+            <option value="">Select existing suggestion</option>
         </select>
       </label>
       <label class="item item-input">
