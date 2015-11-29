@@ -89,7 +89,7 @@ angular
 
     $scope.submitResponse = function(){ // set suggestions and tips as published 
         var tip_query = new Parse.Query("Tip");
-        tip_query.equalTo("authorId","9tc4bwB16S");    
+        tip_query.equalTo("authorId",Parse.User.current().id);    
       //  tip_query.equalTo("author",  Change to dynamic for login & author field
         tip_query.equalTo("itineraryId", $scope.itineraryId);
         tip_query.find({
