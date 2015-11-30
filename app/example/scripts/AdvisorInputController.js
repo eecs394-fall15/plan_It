@@ -116,7 +116,7 @@ angular
     $scope.saveResponse = function  () {  
         
     //    if (tip_arr.length == 0){ // if the local has not yet responded to this event yet 
-        if ($scope.responded == false){
+        if ($scope.responded.value == false){
         
           var Suggestions = Parse.Object.extend("Suggestions");
           var suggestion = new Suggestions();
@@ -215,9 +215,11 @@ angular
             suggestion_query.equalTo("objectId",$scope.responded.sugg);
             suggestion_query.find({
                 success: function(s_r){
+                    if (s_r.length > 0) {
                     if (s_r[0].get("authorId") == Parse.User.current().id){
                         s_r[0].set("title", $scope.advisor.suggestion);
                         s_r[0].save();
+                    }
                     }
                 },
                 error: function(err){
@@ -228,8 +230,10 @@ angular
             tip_query.equalTo("objectId",$scope.responded.tip);
             tip_query.find({
                 success: function(tip_r){
+                    if (tip_r.length > 0){
                     tip_r[0].set("title",$scope.advisor.tip);
                     tip_r[0].save();
+                    }
                 },
                 error: function(err){
                 }
