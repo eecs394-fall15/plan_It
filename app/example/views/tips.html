@@ -12,13 +12,15 @@
     </div>
     
     <div ng-repeat=" tip in tips">
+        <div ng-show="tip.get('published') == true">
         <div class="card">
-            <div class="item item-divider" style="padding-bottom=5px;background:#66ccff;">
+            <div class="item item-divider label-dark" style="padding-bottom=5px;">
                 <span ng-bind="tip.get('author').get('username')"></span>
                 <span> says: </span>
             </div>
             <div class="item item-text-wrap" ng-bind="tip.get('title')">
             </div>  
+        </div>
         </div>
     </div>
 </div>
