@@ -3,19 +3,19 @@ angular
   .controller('customizeController', function($scope, supersonic) {
 
     $scope.events = [];
-    var itineraryId = null;
+    $scope.itineraryId = null;
     
     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
     steroids.view.setBackgroundColor("#5cd6d6");
               
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
-                                               itineraryId =itinerary_id.id;
+                                               $scope.itineraryId =itinerary_id.id;
                                                });
 
     $scope.submitRequest = function() {
         var eventsQ = new Parse.Query("Events");
         eventsQ.equalTo("author",Parse.User.current());
-        eventsQ.equalTo("itineraryId",itineraryId);
+        eventsQ.equalTo("itineraryId",$scope.itineraryId);
         eventsQ.find({
             success: function(allevents){
                 for (var i = 0; i < allevents.length;i++){
@@ -29,7 +29,7 @@ angular
         });
          
         var queryit = new Parse.Query("Itinerary");
-        queryit.equalTo("objectId", itineraryId); 
+        queryit.equalTo("objectId", $scope.itineraryId); 
         queryit.find({
             success: function(itinerare) {
 
@@ -56,7 +56,7 @@ angular
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
         
-        query.equalTo("objectId", itineraryId);
+        query.equalTo("objectId", $scope.itineraryId);
         query.include("events");
         query.include("events.suggestions");
         query.include("events.chosen");
