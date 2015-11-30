@@ -2,6 +2,11 @@ angular
   .module('example')
   .controller('LoginController', ['$scope' , 'supersonic', '$rootScope', function($scope, supersonic, $rootScope) {
     $scope.scenario = 'Log in';
+      
+     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+      steroids.view.setBackgroundColor("#5cd6d6");
+      
+      
     if($rootScope.currentUser)
     {
       $scope.scenario = 'Logged in';
@@ -55,9 +60,4 @@ angular
       supersonic.ui.initialView.show();
     }
 
-
-    
-
-
-    
   }]);

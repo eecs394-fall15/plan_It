@@ -1,4 +1,3 @@
-
 angular
   .module('example')
   .controller('AdvisorInputController', function($scope, supersonic) {
@@ -10,6 +9,10 @@ angular
     $scope.suggestions=[];
     $scope.inputInfo = {};
     $scope.responded = {value:false};
+
+    
+     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
           
     supersonic.ui.views.current.params.onValue(function(sentvals){
         $scope.eventId =sentvals.eventid;
@@ -18,6 +21,7 @@ angular
 
     
     supersonic.ui.views.current.whenVisible(function() {
+        
         
         
         // querying to get currentEvent obj and that event's existing suggestions 
@@ -34,12 +38,9 @@ angular
                 $scope.curr_event = q_events[0];
                 $scope.allResponders = q_events[0].get("responders"); 
                 
-                
-
-                
                 var curr_suggs = q_events[0].get('suggestions'); 
                 
-            for (var i = 0; i < curr_suggs.length; i++){
+            for (var i = 0; i < curr_suggs.length; i++){ // get all existing suggestions
                 var sug = curr_suggs[i];
 		     	curr_sugg = {};
 		     	curr_sugg.title = sug.get('title');
@@ -47,40 +48,55 @@ angular
 		     	curr_sugg.objectid = sug.id;
 		     	$scope.suggestions.push(curr_sugg);
 		     }
-		     $scope.selected =null;
+            
+            if ($scope.suggestions.length > 0){
+             $scope.selected = $scope.suggestions[0];
+            }
+            
                     
         // check if user already has existing input for this event
-    if ($scope.allResponders.length > 0) { 
-        if ($scope.allResponders.indexOf(Parse.User.current().id) > -1) { //////////// Change from hardcoded 
+  //  if ($scope.allResponders.length > 0) { 
+        if ($scope.allResponders.indexOf(Parse.User.current().id) > -1) { 
             $scope.responded.value = true; 
-            
+         
             var squery = new  Parse.Query("Suggestions");
-            //squery.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
-            squery.equalTo("authorId", Parse.User.current().id);
+            squery.equalTo("authors", Parse.User.current().id);
             squery.equalTo("itineraryId",$scope.itineraryId); 
+            squery.equalTo("eventid",$scope.eventId);
             squery.find({
-                success: function(result){
-                  $scope.inputInfo.sugg = result[0].get("title"); 
-                    supersonic.logger.log(result); 
+                success: function(results){
+                    for (var k = 0; k < $scope.suggestions.length;k++){
+                        var s = $scope.suggestions[k];
+                        if (s.objectid == results[0].id){
+                            $scope.selected = $scope.suggestions[s.id];
+                            $scope.responded.sugg = s.objectid;
+                        }
+                    }
+                    
+                  
                 },
                 error: function(err){
                 }
-            }); 
+            });  
             
             var tquery = new Parse.Query("Tip");
-            //tquery.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
             tquery.equalTo("authorId", Parse.User.current().id);  
             tquery.equalTo("itineraryId",$scope.itineraryId); 
+            tquery.equalTo("eventid",$scope.eventId);
             tquery.find({
                 success: function(result){
-                  $scope.inputInfo.tip = result[0].get("title"); 
-                    supersonic.logger.log("tip"+result); 
+                    
+                 //   $scope.advisor.tip ="got here";
+                  $scope.advisor.tip = result[0].get("title"); 
+                    $scope.responded.tip = result[0].id;
+                    supersonic.logger.log("tip"+angular.toJson(result)); 
                 },
                 error: function(err){
                 }
             }); 
+              
         }  
-    }
+  //  }
               
      },
         error: function(error) {
@@ -88,7 +104,7 @@ angular
         }  
         });
 
-    });
+    }); // end of whenVisible
     
     $scope.changeSugg = function() {
        $scope.responded.value = false;
@@ -97,95 +113,85 @@ angular
        
     }
 
-    $scope.saveResponse = function  () {
+    $scope.saveResponse = function  () {  
         
+    //    if (tip_arr.length == 0){ // if the local has not yet responded to this event yet 
+        if ($scope.responded.value == false){
         
-        var tip_query = new Parse.Query("Tip");
-            //tip_query.equalTo("authorId", "9tc4bwB16S");       //////////// Change from hardcoded 
-            tip_query.equalTo("authorId", Parse.User.current().id);
-            tip_query.equalTo("eventid",$scope.eventId); 
-            tip_query.find({
-                success: function(tip_r){
-                    tip_arr = tip_r;
-                    
-                     if (tip_arr.length > 0){
-                         tip_r[0].set('title',$scope.advisor.tip);
-                         tip_r[0].save();
-                     }
-                    
+          var Suggestions = Parse.Object.extend("Suggestions");
+          var suggestion = new Suggestions();
+
+          var Tip = Parse.Object.extend("Tip");
+          var tip = new Tip();
+
+          tip.set("title", $scope.advisor.tip);
+          tip.set("authorId",Parse.User.current().id); 
+          tip.set("published",false); 
+          tip.set("itineraryId", $scope.itineraryId);
+          tip.set("eventid",$scope.eventId); 
+          tip.set("author",Parse.User.current());
+
+
+          tip.save(null, {
+                success: function(q_tip) {
+                  supersonic.logger.log("saved tip");   
+
                 },
-                error: function(err){
+                error: function(q_tip, error) {
+
                 }
-            }); 
-        
-        
-        
-        if (tip_arr.length == 0){
-        
-        
-        
-        
-        
-      var Suggestions = Parse.Object.extend("Suggestions");
-      var suggestion = new Suggestions();
+          }); 
 
-      var Tip = Parse.Object.extend("Tip");
-      var tip = new Tip();
-
-      tip.set("title", $scope.advisor.tip);
-      //tip.set("authorId","9tc4bwB16S"); ////////Change from hradcoded
-      tip.set("authorId",Parse.User.current().id); 
-      tip.set("published",false); 
-      tip.set("itineraryId", $scope.itineraryId);
-      tip.set("eventid",$scope.eventId); 
-      //tip.set("author",);
-
-
-      tip.save(null, {
-            success: function(q_tip) {
-              supersonic.logger.log("saved tip");   
-                
-            },
-            error: function(q_tip, error) {
-                
-            }
-      }); 
-
-     if ($scope.advisor.suggestion){
+     if ($scope.advisor.suggestion){   // If user entered a new suggestion 
+         supersonic.logger.log("new suggestion input"); 
              suggestion.set("title", $scope.advisor.suggestion);
              suggestion.set("isSaved", false);
              suggestion.addUnique("tips",tip);
              suggestion.set("published",false); 
-             suggestion.set("itineraryId", $scope.itineraryId);
-             suggestion.set("authorId", "9tc4bwB16S"); 
+             suggestion.set("itineraryId", $scope.itineraryId); 
              suggestion.set("eventid",$scope.eventId);
-            // suggestion.set("author",
+             suggestion.set("author",Parse.User.current());
+            suggestion.set("authorId",Parse.User.current().id);
+            suggestion.addUnique("authors",Parse.User.current().id);
 
 
               suggestion.save(null, {
                     success: function(q_sug) {
                         supersonic.logger.log("saved suggestion");  
                         
-                        var Event = Parse.Object.extend("Events");
-                        var query = new Parse.Query(Event);
-                        query.equalTo("objectId", $scope.eventId);
-                        query.find({
+                        var eventsquery = new Parse.Query("Events");
+                        eventsquery.equalTo("objectId", $scope.eventId);
+                        eventsquery.find({
                             success: function(q_events) {
-                                var current_event = q_events[0];
-                                current_event.addUnique("suggestions",q_sug);
-                                //current_event.addUnique("responders","9tc4bwB16S"); //////// change from hardcoded 
-                                current_event.addUnique("responders",Parse.User.current().id);
-                                current_event.save();    
+                                q_events[0].addUnique("suggestions",q_sug);
+                                q_events[0].addUnique("responders",Parse.User.current().id);
+                                q_events[0].save();    
                          },
                             error: function(error) {
                             supersonic.logger.log("query q_events failed");
                             }  
-                            });
+                            });  
                     },
                     error: function(q_sug, error) {
 
                     }
               });
+        
+      /*   var eventsquery = new Parse.Query("Events");
+            eventsquery.equalTo("objectId", $scope.eventId);
+            eventsquery.find({
+                success: function(q_events) {
+                   
+                    supersonic.logger.log("adding info to Event");
+                    var current_event = q_events[0];
+                    current_event.addUnique("suggestions",suggestion);
+                    current_event.addUnique("responders",Parse.User.current().id);
+                    current_event.save();    
+                },
+                error: function(error) {
+                    supersonic.logger.log("query q_events failed");
+                }  
+            }); */
        }
         else {        // saving tip to existing suggestions
             var query = new Parse.Query("Suggestions");
@@ -200,10 +206,53 @@ angular
                 error: function(err){
                 }
             });
+        } 
+  //  }
         }
-    }
-      supersonic.ui.layers.pop();
-      
-    }
+        else {    // updating a previous response --------------------- only supports tips right now and 'new suggestion' replace user's suggestion
+            
+            var suggestion_query = new Parse.Query("Suggestions");
+            suggestion_query.equalTo("objectId",$scope.responded.sugg);
+            suggestion_query.find({
+                success: function(s_r){
+                    if (s_r.length > 0) {
+                    if (s_r[0].get("authorId") == Parse.User.current().id){
+                        s_r[0].set("title", $scope.advisor.suggestion);
+                        s_r[0].save();
+                    }
+                    }
+                },
+                error: function(err){
+                }
+            });  
+                   
+            var tip_query = new Parse.Query("Tip");
+            tip_query.equalTo("objectId",$scope.responded.tip);
+            tip_query.find({
+                success: function(tip_r){
+                    if (tip_r.length > 0){
+                    tip_r[0].set("title",$scope.advisor.tip);
+                    tip_r[0].save();
+                    }
+                },
+                error: function(err){
+                }
+            });  
+        }
+        
+        var options = {
+                  buttonLabel: "Close"
+        };
+        if ($scope.responded == false){
+        supersonic.ui.dialog.alert("Response successfully updated!", options).then(function() {
+            supersonic.ui.layers.pop();
+                });
+        }
+        else{
+            supersonic.ui.dialog.alert("Response successfully saved!", options).then(function() {
+            supersonic.ui.layers.pop();
+                });
+        }
+    } // end of saveResponse 
 
 });

@@ -4,11 +4,50 @@ angular
 
     $scope.events = [];
     var itineraryId = null;
+    
+    // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
               
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                itineraryId =itinerary_id.id;
                                                });
 
+    $scope.submitRequest = function() {
+        var eventsQ = new Parse.Query("Events");
+        eventsQ.equalTo("author",Parse.User.current());
+        eventsQ.equalTo("itineraryId",itineraryId);
+        eventsQ.find({
+            success: function(allevents){
+                for (var i = 0; i < allevents.length;i++){
+                    var ev = allevents[i];
+                    ev.set("published",true);
+                    ev.save(); 
+                }
+            },
+            error: function(errr){
+            }
+        });
+         
+        var queryit = new Parse.Query("Itinerary");
+        queryit.equalTo("objectId", itineraryId); 
+        queryit.find({
+            success: function(itinerare) {
+
+                itinerare[0].set("published",true);  
+                itinerare[0].save(); 
+                
+                var options = {
+                  buttonLabel: "Close"
+                };
+
+                supersonic.ui.dialog.alert("Itinerary successfully submitted!", options).then(function() {
+                });
+                
+            },
+            error: function(err) {
+            }
+        });
+    }
     
     supersonic.ui.views.current.whenVisible(function() {
         
@@ -16,7 +55,6 @@ angular
         
         var Itenary = Parse.Object.extend("Itinerary");
         var query = new Parse.Query(Itenary);
-        //var iternaryIdstr="1AtJcYGjFs";
         
         query.equalTo("objectId", itineraryId);
         query.include("events");
@@ -29,8 +67,6 @@ angular
             supersonic.logger.log("queried successfully");   
                 
                 $scope.itenary = itinerary[0];
-            //    supersonic.logger.log(itinerary);
-            //     supersonic.logger.info(itinerary);
                  var eventsObj=itinerary[0].get("events")
                      
                   $scope.events = eventsObj.sort(function(a,b){
@@ -49,7 +85,7 @@ angular
         }  
         });
 
-    });
+    }); 
 
     $scope.saveSuggestion = function  (suggestionId,eventId) {
       var Suggestions = Parse.Object.extend("Suggestions");

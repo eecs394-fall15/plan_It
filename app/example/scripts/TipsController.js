@@ -7,6 +7,9 @@ angular
     
     var suggestionId = null;
     
+    // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
+    
     supersonic.ui.views.current.params.onValue( function (passedSuggestion) {
         suggestionId = passedSuggestion.id; 
     });

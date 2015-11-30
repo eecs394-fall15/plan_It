@@ -3,8 +3,13 @@ angular
   .controller('ResponseController', function($scope, supersonic) {
 
     $scope.events = [];
+    $scope.tips = [];
     $scope.itineraryId = null;
-    $scope.listLimit = 2;          
+    $scope.listLimit = 2;       
+    
+     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+    steroids.view.setBackgroundColor("#5cd6d6");
+    
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                $scope.itineraryId =itinerary_id.id;
                                                });
@@ -39,6 +44,19 @@ angular
         error: function(error) {
         supersonic.logger.log("query failed");
         }  
+        });
+        
+        var tipq = new Parse.Query("Tip");
+        tipq.equalTo("authorId",Parse.User.current().id);
+        tipq.equalTo("author",Parse.User.current());
+        tipq.equalTo("itineraryId",$scope.itineraryId);
+        tipq.equalTo("published",false); 
+        tipq.find({
+            success: function(tipsArr){
+                $scope.tips = tipsArr;
+            },
+            error: function(err){
+            }
         });
 
     });
@@ -83,11 +101,11 @@ angular
       });  
     }
 
-    $scope.submitResponse = function(){ // set suggestions and tips as published 
+    $scope.submitResponse = function(){ // set suggestions and tips as published
         var tip_query = new Parse.Query("Tip");
-        tip_query.equalTo("authorId","9tc4bwB16S");    
-      //  tip_query.equalTo("author",  Change to dynamic for login & author field
+        tip_query.equalTo("authorId",Parse.User.current().id);    
         tip_query.equalTo("itineraryId", $scope.itineraryId);
+        tip_query.equalTo("author", Parse.User.current()); 
         tip_query.find({
             success: function(currTips){
                 for (var i = 0; i < currTips.length; i++){
@@ -101,9 +119,9 @@ angular
         });
         
         var sugg_query = new Parse.Query("Suggestions");
-        sugg_query.equalTo("authorId","9tc4bwB16S");    // Change to dynamic for login & author field
+        sugg_query.equalTo("authorId",Parse.User.current().id);   
         sugg_query.equalTo("itineraryId", $scope.itineraryId);
-         //  sugg_query.equalTo("author",  Change to dynamic for login & author field
+        sugg_query.equalTo("author", Parse.User.current()); 
         sugg_query.find({
             success: function(currSuggs){
                 for (var i = 0; i < currSuggs.length; i++){
@@ -114,8 +132,16 @@ angular
             },
             error: function(err){
             }
-        });
+        }); 
         
-        
+          var options = {
+                  buttonLabel: "Close"
+        };
+
+        supersonic.ui.dialog.alert("Response successfully submitted!", options).then(function() {
+            
+            var view = new supersonic.ui.View("example#feed");
+                supersonic.ui.layers.push(view);
+                });
     }
 });
