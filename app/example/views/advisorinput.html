@@ -11,11 +11,14 @@
             </span>
         </div>
         
-    <div ng-show="!responded.value">    
-    <label class="item item-input item-select">
-        <span class="input-label"> Past Suggestions</span>
+    <div>    
+    <label class="item item-input item-select" ng-show="suggestions.length > 0">
+        <span class="input-label"> 
+            <div ng-hide="responded.value">Select Existing Suggestion:</div>
+            <div ng-show="responded.value">My Suggestion:</div>
+        
+        </span>
             <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" ng-model="selected">
-            <option value="">Select existing suggestion</option>
         </select>
       </label>
       <label class="item item-input">
@@ -24,14 +27,15 @@
       </label>
         
         <div class="item item-divider label-dark">
-           <span class="input-label label-dark">Tip:</span>
+           <span class="input-label label-dark" ng-hide="responded.value">Tip:</span>
+            <span class="input-label label-dark" ng-show="responded.value">My Tip:</span>
                     </div>
              <label class="item item-input">
                    <textarea cols="40" rows="5" type="text" ng-model="advisor.tip"></textarea>
                 </label>
      </div>
         
-     <div ng-show="responded.value">
+ <!--    <div ng-show="responded.value">
          
           <label class="item item-input">
         <span class="input-label">Current Suggestion:</span>
@@ -44,11 +48,12 @@
          
          <br>
          <button ng-click="changeSugg()">Change</button>
-     </div>
+     </div> -->
 
 
         <br>
 	    <button ng-click="saveResponse()" class="button button-light">Done</button>
+        
 	</form>
 
 </div> 
