@@ -1,6 +1,6 @@
 <div class="padding" ng-controller="NewEventController">
     
-    <form>
+    <form ng-submit="submitEvent()">
         <div class="list">
             
                  <div class="item item-divider label-dark">
@@ -13,7 +13,7 @@
               </label>
                     
                  <div class="item item-divider label-dark">
-            <span class="input-label label-dark">Custom Looking For:</span>
+            <span class="input-label label-dark">Didn't find in above list, Type in here:</span>
                     </div>
              <label class="item item-input">
                     <input type="text" ng-model="event.title">
@@ -32,9 +32,12 @@
              <label class="item item-input">
                    <textarea cols="40" rows="5" type="text" ng-model="event.additional"></textarea>
                 </label>
-                <br>
-            <button ng-click="submitEvent()" class="button button-light">Done</button>
-            <button ng-click="back()" class="button button-darker">Cancel</button>
-        </div>
+                
+          
+	    
+            <button class="button button-block button-light" type="submit">Done</button>
+	    
+            <button ng-click="back()" class="button button-block button-darker">Cancel</button>
+            </div>
     </form>
 </div>
