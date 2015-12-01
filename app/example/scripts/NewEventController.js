@@ -118,6 +118,7 @@ angular
             error: function(error){
             }
         }); 
+        supersonic.ui.layers.pop();
     }
     
     $scope.back = function(){
