@@ -1,6 +1,7 @@
 angular
   .module('example')
   .controller('NewEventController', function($scope,supersonic) {
+    $scope.missingTime = false; 
     $scope.event={};
     $scope.ideas=[{title: "Adventure sports", id: 0},
 {title: "Amusement Park", id: 1},
@@ -69,7 +70,7 @@ angular
         $scope.itinerary = itineraryId.id; 
     });
     
-    $scope.submitEvent = function(){
+    $scope.saveEvent = function(){
         
         var dbevent = Parse.Object.extend("Events"); 
         var newEvent = new dbevent(); 
@@ -118,8 +119,17 @@ angular
             error: function(error){
             }
         }); 
-        
     }
+    
+    $scope.submitEvent = function(){
+         
+         if (!$scope.event.time){
+              $scope.missingTime = true; 
+         }
+         else{
+             $scope.saveEvent(); 
+         }
+    } 
     
     $scope.back = function(){
         supersonic.ui.layers.pop();
