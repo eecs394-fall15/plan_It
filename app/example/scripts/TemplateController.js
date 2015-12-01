@@ -35,6 +35,7 @@ angular
                 supersonic.logger.log(error); 
             }
         }); 
+        supersonic.ui.layers.pop();
     }
     
     $scope.goBack = function(){
