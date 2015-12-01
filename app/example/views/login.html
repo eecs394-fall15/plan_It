@@ -1,6 +1,6 @@
 <div ng-controller= "LoginController" class="container padding">
     
-  <form ng-show="scenario == 'Sign up'" role="form">
+  <form ng-show="scenario == 'Sign up'" role="form" ng-submit="signUp(user)">
     <div style="font-size:5em; text-align:center; margin-top:23%;">
             Holiday
         </div>
@@ -14,17 +14,17 @@
     <br>
       <div class="list list-inset">
             <label class="item item-input form-group">
-                <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email">
+                <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email" required>
             </label>
             <label class="item item-input form-group">
-                <input type="text" class="form-control" ng-model="user.username" id="userName" placeholder="Username">
+                <input type="text" class="form-control" ng-model="user.username" id="userName" placeholder="Username" required>
             </label>
             <label class="item item-input form-group">
-                <input type="password" class="form-control" ng-model="user.password" id="pwd" placeholder="Password"/>
+                <input type="password" class="form-control" ng-model="user.password" id="pwd" placeholder="Password" required>
             </label>
         </div>
       
-      <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" ng-click="signUp(user)">
+      <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" type="submit" >
             Sign Up
         </button>
        <button style="margin-top:26%; text-align:center; margin-left:40%;" ng-click='scenario="Log in"' class="button button-dark">
