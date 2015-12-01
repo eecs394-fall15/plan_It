@@ -3,8 +3,8 @@ angular
   .controller('LoginController', ['$scope' , 'supersonic', '$rootScope', function($scope, supersonic, $rootScope) {
     $scope.scenario = 'Log in';
       
-     // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
-      steroids.view.setBackgroundColor("#5cd6d6");
+      steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+     // steroids.view.setBackgroundColor("#5cd6d6");
       
       
     if($rootScope.currentUser)
