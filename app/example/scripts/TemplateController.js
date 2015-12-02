@@ -1,7 +1,7 @@
 angular
   .module('example')
   .controller('TemplateController', function($scope, supersonic) {
-   $scope.navbarTitle = "Create Template"; 
+   $scope.navbarTitle = "Create Itinerary"; 
    $scope.template = {};
     
     //steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
@@ -35,6 +35,7 @@ angular
                 supersonic.logger.log(error); 
             }
         }); 
+        
     }
     
     $scope.goBack = function(){
