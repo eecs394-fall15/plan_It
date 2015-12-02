@@ -1,6 +1,6 @@
 <div class="padding" ng-controller="NewEventController">
     
-    <form ng-submit="submitEvent()">
+    <form>
         <div class="list">
             
                  <div class="item item-divider label-dark">
@@ -20,10 +20,12 @@
                 </label>
 
                   <div class="item item-divider label-dark">
-             <span class="input-label label-dark">When do you plan to go...?</span>
+             <span class="input-label label-dark">
+                 <span ng-show="missingTime" style="color:red;">Required* </span>
+                 When do you plan to go...?</span>
                     </div>
              <label class="item item-input">
-                    <input type="time" ng-model="event.time" required>
+                    <input type="time" ng-model="event.time">
                 </label>
 
                 <div class="item item-divider label-dark">
@@ -32,12 +34,9 @@
              <label class="item item-input">
                    <textarea cols="40" rows="5" type="text" ng-model="event.additional"></textarea>
                 </label>
-                
-          
-	    
-            <button class="button button-block button-light" type="submit">Done</button>
-	    
-            <button ng-click="back()" class="button button-block button-darker">Cancel</button>
-            </div>
+                <br>
+            <button ng-click="submitEvent()" class="button button-light">Done</button>
+            <button ng-click="back()" class="button button-darker">Cancel</button>
+        </div>
     </form>
 </div>
