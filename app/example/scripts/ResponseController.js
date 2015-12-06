@@ -140,8 +140,8 @@ angular
 
         supersonic.ui.dialog.alert("Response successfully submitted!", options).then(function() {
             
-            var view = new supersonic.ui.View("example#feed");
-                supersonic.ui.layers.push(view);
+            //var view = new supersonic.ui.View("example#feed");
+                supersonic.ui.layers.pop();
                 });
     }
 });
