@@ -26,7 +26,8 @@
         </select>
       </label>
       <label class="item item-input">
-        <span class="input-label"><b ng-show="suggestions.length > 0">OR</b> Enter New Suggestion:</span>
+        <span class="input-label" ng-hide="responded.value"><b ng-show="suggestions.length > 0">OR</b> Enter New Suggestion:</span>
+        <span class="input-label" ng-show="responded.value"><b ng-show="suggestions.length > 0">OR</b> Update My Suggestion:</span>
              <input type="text" ng-model="advisor.suggestion" />
       </label>
         
