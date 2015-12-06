@@ -127,7 +127,17 @@ angular
               $scope.missingTime = true; 
          }
          else{
-             $scope.saveEvent(); 
+             $scope.saveEvent();
+             //supersonic.ui.layers.pop();
+
+             // var view = new supersonic.ui.View("example#customize");       
+             //    supersonic.ui.layers.push(view, {
+             //        params: {
+             //            id: $scope.itinerary
+             //        }
+             //       });
+
+
          }
     } 
     
