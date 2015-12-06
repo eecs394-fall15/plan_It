@@ -41,12 +41,14 @@ angular
                 };
 
                 supersonic.ui.dialog.alert("Itinerary successfully submitted!", options).then(function() {
+                //supersonic.ui.layers.pop();
                 });
                 
             },
             error: function(err) {
             }
         });
+
     }
     
     supersonic.ui.views.current.whenVisible(function() {
