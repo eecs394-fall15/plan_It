@@ -9,12 +9,16 @@
            <span class="input-label label-dark">Suggestion for {{curr_event.get('title')}} @ 
             	 <span ng-bind="curr_event.get('time') | date: 'shortTime'"></span>
             </span>
+            <div ng-show="curr_event.get('additional')">
+            <span> {{curr_event.get('author').get('username')}}'s Preferences: </span>
+            <span ng-bind="curr_event.get('additional')"></span>
+            </div>
         </div>
         
     <div>    
     <label class="item item-input item-select" ng-show="suggestions.length > 0">
         <span class="input-label"> 
-            <div ng-hide="responded.value">Select Existing Suggestion:</div>
+            <div ng-hide="responded.value" style="font-size:1em">Select Existing Suggestion:</div>
             <div ng-show="responded.value">My Suggestion:</div>
         
         </span>
@@ -56,4 +60,4 @@
         
 	</form>
 
-</div> 
+</div>
