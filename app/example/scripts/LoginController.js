@@ -5,7 +5,7 @@ angular
       
       steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
      // steroids.view.setBackgroundColor("#5cd6d6");
-      
+      supersonic.ui.tabs.show();
       
     if($rootScope.currentUser)
     {
