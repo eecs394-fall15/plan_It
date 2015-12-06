@@ -29,7 +29,7 @@ angular
         var query = new Parse.Query(Event);
         
         query.equalTo("objectId", $scope.eventId);
-        
+        query.include("author");
         query.include("suggestions");
         //query.include("events.suggestions.tips"); 
         query.find({
