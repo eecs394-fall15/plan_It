@@ -1,6 +1,6 @@
 angular
   .module('example')
-  .controller('LoginController', ['$scope' , 'supersonic', '$rootScope', function($scope, supersonic, $rootScope) {
+  .controller('HomeController', ['$scope' , 'supersonic', '$rootScope', function($scope, supersonic, $rootScope) {
     $scope.scenario = 'Log in';
       
       steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
