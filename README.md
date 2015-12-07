@@ -1,21 +1,21 @@
 #HOLIDAY PLANIT
 
-#DESIGNED BY
+##DESIGNED BY
 * Edgar Vazquez
 * Nikhil Thagadur
 * Jaiveer Kothari
 * Sophia Lou
 
-#DESCRIPTION
+##DESCRIPTION
 Holiday PlanIt is an app that helps a traveler to get suggestions and tips for his travel plans from locals in the area or other users who are in the Holiday PlanIt app community. 
 The traveler can then customize his itinerary by picking from the suggestions and tips and choosing the suggestion he likes the most.
 
-#SYSTEM REQUIREMENTS
+##SYSTEM REQUIREMENTS
 * Supersonic  (https://academy.appgyver.com/installwizard)
 * Angular.js 
 * Node.js
 
-#INSTALLATION
+##INSTALLATION
     Download this repository:
     $ git clone https://github.com/eecs394-fall15/plan_It.git
 
@@ -69,13 +69,13 @@ Tip
 
 * Install the Appgyver Supersonic Scanner from the App Store on your mobile device
 
-#RUNNING
+##RUNNING
  Navigate to the folder where the project is located in your machine in the command prompt(on windows) or terminal( in MAC)
     $ steroids connect 
 
 
 
-#DESCRIPTION OF CODE
+##DESCRIPTION OF CODE
 The app is built using AppGyver’s Supersonic framework. The frontend of the app was coded in Angular JS. ParseDB is the cloud database we used. 
 
 
@@ -84,11 +84,11 @@ For Appgyver’s apis, reference: http://docs.appgyver.com/supersonic/api-refere
 
 The app is divided into two modules- common and example. In the common module we have the scripts that are common to the entire app. In the example module we have the views and their corresponding controllers. We interact with the Parse database through these controllers. 
 
-#PLATFORM CONSTRAINTS
+##PLATFORM CONSTRAINTS
 * For development, Supersonic’s logger doesn’t always output expected logs 
 * For deployment on IOS devices, a developer license is needed 
 
-# KNOWN BUGS NOT FIXED & SPECIFIC LIMITATIONS
+## KNOWN BUGS NOT FIXED & SPECIFIC LIMITATIONS
 * Loading times for database data delay the rate at which different screens populate. 
 * There is a different background for Android and IOS since supersonic’s API does not support background changes yet for Android devices
  
