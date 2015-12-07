@@ -1,6 +1,6 @@
 <div ng-controller= "LoginController" class="container padding">
     
-  <form ng-show="scenario == 'Sign up'" role="form" ng-submit="signUp(user)">
+  <form ng-show="scenario == 'Sign up'" role="form">
     <div style="font-size:5em; text-align:center; margin-top:23%;">
             Holiday
         </div>
@@ -14,17 +14,17 @@
     <br>
       <div class="list list-inset">
             <label class="item item-input form-group">
-                <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email" required>
+                <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email">
             </label>
             <label class="item item-input form-group">
-                <input type="text" class="form-control" ng-model="user.username" id="userName" placeholder="Username" required>
+                <input type="text" class="form-control" ng-model="user.username" id="userName" placeholder="Username">
             </label>
             <label class="item item-input form-group">
-                <input type="password" class="form-control" ng-model="user.password" id="pwd" placeholder="Password" required>
+                <input type="password" class="form-control" ng-model="user.password" id="pwd" placeholder="Password"/>
             </label>
         </div>
       
-      <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" type="submit" >
+      <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" ng-click="signUp(user)">
             Sign Up
         </button>
        <button style="margin-top:26%; text-align:center; margin-left:40%;" ng-click='scenario="Log in"' class="button button-dark">
@@ -38,7 +38,7 @@
       
       <div style="margin-top:7%; font-size:2em;">
         <p>You have been successfully logged in</p>
-        <p style="margin-top:10%;">Continue as...</p>
+        <!-- <p style="margin-top:10%;">Continue...</p> -->
       </div>
 
       <super-navigate location="example#getting-started">
@@ -48,6 +48,7 @@
       <super-navigate location="example#feed">
           <button class="button button-block button-light"><h3>Advisor</h3></button>
       </super-navigate>
+      
         
         <button style="margin-top:70%; text-align:center; margin-left:40%;" ng-click='logOut()' class="button button-dark">
             Log Out
