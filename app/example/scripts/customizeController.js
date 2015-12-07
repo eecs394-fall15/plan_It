@@ -12,13 +12,15 @@ angular
                                                $scope.itineraryId =itinerary_id.id;
                                                });
                                                
-      $scope.updateEvent = function (eventId){
+    $scope.updateEvent = function (eventId,isPublished){
+        if (isPublished == false){
         var view = new supersonic.ui.View("example#updateEvent");       
                 supersonic.ui.layers.push(view, {
                     params: {
                         id: eventId
                     }
                    });
+        }
     }
 
     $scope.submitRequest = function() {
