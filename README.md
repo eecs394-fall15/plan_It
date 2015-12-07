@@ -1,10 +1,17 @@
 #HOLIDAY PLANIT
 
-##DESIGNED BY
+##CONTRIBUTORS
+###Developers
 * Edgar Vazquez
 * Nikhil Thagadur
 * Jaiveer Kothari
 * Sophia Lou
+###MSIT TEAM
+* Amanda Goh
+* Santhi Ratnakaram
+* Rahil Kaul
+###COACH
+* Professor Christopher Riesbeck of Northwestern University
 
 ##DESCRIPTION
 Holiday PlanIt is an app that helps a traveler to get suggestions and tips for his travel plans from locals in the area or other users who are in the Holiday PlanIt app community. 
@@ -23,14 +30,17 @@ The traveler can then customize his itinerary by picking from the suggestions an
 * Sign up for an account at https://parse.com/
 * The parse application is called plan_It. The data can be set in the core section.
 The Application ID and the Rest API key can be found in the settings tabs. Use these keys to integrate the Parse database within these two files. 
-- Plan_It > app > common > scripts >Parse.js
-- Plan_It > app > common > views > layout.html
+- /app/common/scripts/Parse.js
+Parse.initialize(application_ID_here, JavaScript_Key_here,Master_Key_here); 
+
+- Plan_It/app/common/views/layout.html
+Parse.initialize(application_ID_here, JavaScript_Key_here);
 
 The database created for this app has five classes with these column names and types:
-User
 
-Events
+####User
 
+####Events
 - title, String
 - time, Date
 - suggestions, Array
@@ -42,13 +52,13 @@ Events
 - chosen, Pointer<Suggestions>
 - itineraryId, String
 
-Itinerary
+####Itinerary
 - author, Pointer <_User>
 - events, Array
 - published, Boolean
 - title, String
 
-Suggestions
+####Suggestions
 - author, Pointer<_User>
 - authorId, String
 - authors, Array
@@ -59,7 +69,7 @@ Suggestions
 - tips, Array
 - title, String
 
-Tip
+####Tip
 - authorId, String
 - title, String
 - author, Pointer<_User>
@@ -70,10 +80,15 @@ Tip
 * Install the Appgyver Supersonic Scanner from the App Store on your mobile device
 
 ##RUNNING
- Navigate to the folder where the project is located in your machine in the command prompt(on windows) or terminal( in MAC)
+    $ cd plan_it
     $ steroids connect 
 
-
+##DEPLOYMENT
+####Sharable Link
+From the steroids connect page, navigate to Cloud. Click on "Open Cloud Share Page" under the "Share App" heading
+####IOS DEBUG ADHOC BUILD
+Follow the directions at http://docs.appgyver.com/tooling/build-service/build-settings/building-a-debug-build/
+Note: an Ios developer account is needed
 
 ##DESCRIPTION OF CODE
 The app is built using AppGyver’s Supersonic framework. The frontend of the app was coded in Angular JS. ParseDB is the cloud database we used. 
