@@ -12,7 +12,7 @@ angular
 
     
      // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
-    steroids.view.setBackgroundColor("#5cd6d6");
+    steroids.view.setBackgroundColor("#66d9ff");
           
     supersonic.ui.views.current.params.onValue(function(sentvals){
         $scope.eventId =sentvals.eventid;
