@@ -25,4 +25,26 @@ angular
             }
         });
      });
+    
+    $scope.updateEvent = function(){
+        var eventsQ = new Parse.Query("Events");
+        eventsQ.equalTo("objectId",$scope.eventid);
+        eventsQ.find({
+            success: function(thatevent){
+   
+                thatevent[0].set('title',$scope.event.title);
+                thatevent[0].set('time',$scope.event.time);
+                thatevent[0].set('additional',$scope.event.additional);
+                thatevent[0].save(); 
+                  var options = {
+                  buttonLabel: "Close"
+        };
+                supersonic.ui.dialog.alert("Event successfully updated!", options).then(function() {
+            supersonic.ui.layers.pop();
+                });
+            },
+            error: function(errr){
+            }
+        });
+    }
 });
