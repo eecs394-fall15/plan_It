@@ -4,7 +4,7 @@ angular
     $scope.ites = null;
     
      // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
-    steroids.view.setBackgroundColor("#5cd6d6");
+    steroids.view.setBackgroundColor("#66d9ff");
 
     supersonic.ui.views.current.whenVisible(function() {
         
@@ -13,6 +13,7 @@ angular
         var query = new Parse.Query("Itinerary");
         query.notEqualTo("author", Parse.User.current());
         query.equalTo("published",true); 
+        query.include("author");
         query.find({
             success: function (results) {
                 supersonic.logger.log("feedcontroller successful query");
