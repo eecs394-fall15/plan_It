@@ -2,22 +2,22 @@
 
   <super-navbar>
     <super-navbar-title>
-      Itineraries
+      Traveler
     </super-navbar-title>
-    
-<super-navbar-button side="right" location="example#home">
-    Home
-  </super-navbar-button>
+    <super-navbar-button side="right" location="example#new"> <b id="plus">ADD</b></super-navbar-button>
   </super-navbar>
     
 <super-navigate location="example#customize" ng-repeat="itenerary in iterneraries" data-params-id="{{itenerary.id}}">
     <button class="button button-block button-dark"><h3 style="color:#FFFFFF" ng-bind="itenerary.get('title')"></h3></button>
     </super-navigate>
     
-    
-        <super-navigate location="example#new">
-          <button class="button button-block button-light"><h4>Add Itenaries</h4></button>
-      </super-navigate>
-    
+    <div ng-show="iterneraries.length == 0">
+        <p style="margin-top:10%; font-size:2em;">
+            No personal itineraries 
+        </p>
+        <p style="margin-top:2%; font-size:2em;">
+            Click 'ADD' 
+        </p>
+    </div>
 
 </div>
