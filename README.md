@@ -20,46 +20,47 @@ The traveler can then customize his itinerary by picking from the suggestions an
     $ git clone https://github.com/eecs394-fall15/plan_It.git
 
     Cloud Parse database setup 
-Sign up for an account at https://parse.com/
-The parse application is called plan_It. The data can be set in the core section.
+* Sign up for an account at https://parse.com/
+* The parse application is called plan_It. The data can be set in the core section.
 The Application ID and the Rest API key can be found in the settings tabs. Use these keys to integrate the Parse database within these two files. 
-Plan_It > app > common > scripts >Parse.js
-Plan_It > app > common > views > layout.html
+- Plan_It > app > common > scripts >Parse.js
+- Plan_It > app > common > views > layout.html
+
 The database created for this app has five classes with these column names and types
-User
-Events
-title, String
-time, Date
-suggestions, Array
-listLimit, Number
-additional, String
-author, Pointer<_User>
-responders, Array
-isChosen, Boolean
-chosen, Pointer<Suggestions>
-itineraryId, String
-Itinerary
-author, Pointer <_User>
-events, Array
-published, Boolean
-title, String
-Suggestions
-author, Pointer<_User>
-authorId, String
-authors, Array
-eventid, String
-isSaved, Boolean
-itineraryId, String
-published, Boolean
-tips, Array
-title, String
-Tip
-authorId, String
-title, String
-author, Pointer<_User>
-published, Boolean
-itineraryId, String
-eventid, String
+* User
+* Events
+- title, String
+- time, Date
+- suggestions, Array
+- listLimit, Number
+- additional, String
+- author, Pointer<_User>
+- responders, Array
+- isChosen, Boolean
+- chosen, Pointer<Suggestions>
+- itineraryId, String
+* Itinerary
+- author, Pointer <_User>
+- events, Array
+- published, Boolean
+- title, String
+* Suggestions
+- author, Pointer<_User>
+- authorId, String
+- authors, Array
+- eventid, String
+- isSaved, Boolean
+- itineraryId, String
+- published, Boolean
+- tips, Array
+- title, String
+* Tip
+- authorId, String
+- title, String
+- author, Pointer<_User>
+- published, Boolean
+- itineraryId, String
+- eventid, String
 
 * Install the Appgyver Supersonic Scanner from the App Store on your mobile device
 
