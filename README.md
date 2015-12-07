@@ -29,8 +29,8 @@ The Application ID and the Rest API key can be found in the settings tabs. Use t
 The database created for this app has five classes with these column names and types
 * User
 * Events
-- title, String
-- time, Date
+> title, String
+> time, Date
 - suggestions, Array
 - listLimit, Number
 - additional, String
