@@ -7,12 +7,12 @@
 * [Jaiveer Kothari](https://github.com/jaiveerkothari)
 * [Sophia Lou](https://github.com/sophialou)
 
-###MSIT TEAM
+###MSIT Team
 * Amanda Goh
 * Santhi Ratnakaram
 * Rahil Kaul
 
-###COACH
+###Coach
 * Professor Christopher Riesbeck of Northwestern University
 
 ##DESCRIPTION
@@ -26,9 +26,8 @@ The traveler can then customize his itinerary by picking from the suggestions an
 
 ##INSTALLATION
     Download this repository:
-    ```
     $ git clone https://github.com/eecs394-fall15/plan_It.git
-    ```
+    
     
 ###Cloud Parse database setup 
 * Sign up for an account at https://parse.com/
@@ -100,7 +99,7 @@ Parse.initialize(application_ID_here, JavaScript_Key_here);
 From the steroids connect page, navigate to Cloud. Click on "Open Cloud Share Page" under the "Share App" heading
 ####IOS Debug Adhoc Build
 Follow the directions at http://docs.appgyver.com/tooling/build-service/build-settings/building-a-debug-build/
-Note: An IOS developer account is needed
+* Note: An IOS developer account is needed
 
 ##DESCRIPTION OF CODE
 The app is built using AppGyver’s Supersonic framework. The frontend of the app was coded in Angular JS. ParseDB is the cloud database we used. 
