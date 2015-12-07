@@ -1,7 +1,7 @@
 #Holiday PlanIt
 
 #Designed By
-Edgar Vazquez 
+Edgar Vazquez
 Nikhil Thagadur
 Jaiveer Kothari
 Sophia Lou
