@@ -1,39 +1,63 @@
 angular
   .module('example')
-  .controller('HomeController', function($scope, supersonic) {
- //    $scope.iterneraries = null;
+  .controller('LoginController', ['$scope' , 'supersonic', '$rootScope', function($scope, supersonic, $rootScope) {
+    $scope.scenario = 'Log in';
+      
+      steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
+     // steroids.view.setBackgroundColor("#5cd6d6");
+      supersonic.ui.tabs.show();
+      
+    if($rootScope.currentUser)
+    {
+      $scope.scenario = 'Logged in';
+      var animation = supersonic.ui.animate("curlDown");
+      supersonic.ui.initialView.dismiss(animation);
+    }
+  $scope.signUp = function(form) {
+    var user = new Parse.User();
+    user.set("email", form.email);
+    user.set("username", form.username);
+    user.set("password", form.password);
+   
+    user.signUp(null, {
+      success: function(user) {
+        $rootScope.currentUser = user;
+        $scope.scenario = 'Logged in';
+        $scope.$apply(); // Notify AngularJS to sync currentUser
+        //var animation = supersonic.ui.animate("curlDown");
+        //supersonic.ui.initialView.dismiss(animation);
+      },
+      error: function(user, error) {
+        alert("Unable to sign up:  " + error.code + " " + error.message);
+      }
+    });    
+  };
 
- //        supersonic.ui.views.current.whenVisible(function() {
+  $scope.logIn = function(form) {
+    Parse.User.logIn(form.username, form.password, {
+      success: function(user) {
+        $rootScope.currentUser = user;
+        $scope.scenario = 'Logged in';
+        $scope.$apply();
+        //var animation = supersonic.ui.animate("curlDown");
+        //supersonic.ui.initialView.dismiss(animation);
+      },
+      error: function(user, error) {
+        alert("Unable to log in: " + error.code + " " + error.message);
+      }
+    });
+  };
 
- //        var Itenary = Parse.Object.extend("Itinerary");
- //        var query = new Parse.Query(Itenary);
- //        query.find({
- //            success: function (results) {
- //            $scope.iterneraries = results; 
- //    },
- //    error: function (error) {
- //        alert("Error: " + error.code + " " + error.message);
- //    }
-        
- //        });
-        
-        
- // });
+  $scope.logOut = function()
+    {    
+          Parse.User.logOut();
+          $rootScope.currentUser = null;
+          $scope.scenario = 'Log in';
+    }
 
+    $scope.logOutTrigger = function()
+    {
+      supersonic.ui.initialView.show();
+    }
 
-
-  $scope.currUser = Parse.User.current().id;
-  supersonic.logger.log("yo id is "+ $scope.currUser);
-
-
-
-
-  supersonic.ui.views.current.whenVisible(function() {
-
-       $scope.currUser = Parse.User.current().id;
-  supersonic.logger.log("yo id is "+ $scope.currUser);
-    
-});
-
-
-});
+  }]);
