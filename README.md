@@ -26,11 +26,13 @@ The Application ID and the Rest API key can be found in the settings tabs. Use t
 - Plan_It > app > common > scripts >Parse.js
 - Plan_It > app > common > views > layout.html
 
-The database created for this app has five classes with these column names and types
-* User
-* Events
-> title, String
-> time, Date
+The database created for this app has five classes with these column names and types:
+User
+
+Events
+
+- title, String
+- time, Date
 - suggestions, Array
 - listLimit, Number
 - additional, String
@@ -39,12 +41,14 @@ The database created for this app has five classes with these column names and t
 - isChosen, Boolean
 - chosen, Pointer<Suggestions>
 - itineraryId, String
-* Itinerary
+
+Itinerary
 - author, Pointer <_User>
 - events, Array
 - published, Boolean
 - title, String
-* Suggestions
+
+Suggestions
 - author, Pointer<_User>
 - authorId, String
 - authors, Array
@@ -54,7 +58,8 @@ The database created for this app has five classes with these column names and t
 - published, Boolean
 - tips, Array
 - title, String
-* Tip
+
+Tip
 - authorId, String
 - title, String
 - author, Pointer<_User>
