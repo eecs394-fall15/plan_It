@@ -20,7 +20,7 @@
                 <span ng-bind="event.get('time') | date: 'shortTime'"></span>
             </div>
 
-            <div style="font-weight:bold; font-size:18px;" class="item item-divider col col-75 col-offset-25 label-dark label-padding"> 
+            <div ng-click="updateEvent(event.id)" style="font-weight:bold; font-size:18px;" class="item item-divider col col-75 col-offset-25 label-dark label-padding"> 
                   Ideas for
                   <span ng-bind="event.get('title')" ></span>
             </div>
