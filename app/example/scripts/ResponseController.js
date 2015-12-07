@@ -8,7 +8,7 @@ angular
     $scope.listLimit = 2;       
     
      // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
-    steroids.view.setBackgroundColor("#5cd6d6");
+    steroids.view.setBackgroundColor("#66d9ff");
     
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                $scope.itineraryId =itinerary_id.id;
@@ -140,8 +140,8 @@ angular
 
         supersonic.ui.dialog.alert("Response successfully submitted!", options).then(function() {
             
-            var view = new supersonic.ui.View("example#feed");
-                supersonic.ui.layers.push(view);
+            //var view = new supersonic.ui.View("example#feed");
+                supersonic.ui.layers.pop();
                 });
     }
 });

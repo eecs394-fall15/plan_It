@@ -11,6 +11,17 @@ angular
     supersonic.ui.views.current.params.onValue(function(itinerary_id){
                                                $scope.itineraryId =itinerary_id.id;
                                                });
+                                               
+    $scope.updateEvent = function (eventId,isPublished){
+        if (isPublished == false){
+        var view = new supersonic.ui.View("example#updateEvent");       
+                supersonic.ui.layers.push(view, {
+                    params: {
+                        id: eventId
+                    }
+                   });
+        }
+    }
 
     $scope.submitRequest = function() {
         var eventsQ = new Parse.Query("Events");
@@ -41,12 +52,14 @@ angular
                 };
 
                 supersonic.ui.dialog.alert("Itinerary successfully submitted!", options).then(function() {
+                //supersonic.ui.layers.pop();
                 });
                 
             },
             error: function(err) {
             }
         });
+
     }
     
     supersonic.ui.views.current.whenVisible(function() {

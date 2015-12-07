@@ -12,7 +12,7 @@ angular
 
     
      // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
-    steroids.view.setBackgroundColor("#5cd6d6");
+    steroids.view.setBackgroundColor("#66d9ff");
           
     supersonic.ui.views.current.params.onValue(function(sentvals){
         $scope.eventId =sentvals.eventid;
@@ -29,7 +29,7 @@ angular
         var query = new Parse.Query(Event);
         
         query.equalTo("objectId", $scope.eventId);
-        
+        query.include("author");
         query.include("suggestions");
         //query.include("events.suggestions.tips"); 
         query.find({

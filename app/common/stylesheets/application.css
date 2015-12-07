@@ -77,3 +77,32 @@
     padding-top: 0.8em;
     padding-bottom: 0.8em;
 }
+
+.button-light-traveler {
+	background-color: #c2f0f0 !important;
+	border-color: #196666 !important;
+    border-width: 8px !important;
+}
+
+.button-light-advisor {
+    background-color: #ccf2ff !important;
+	border-color: #0086b3 !important;
+    border-width: 8px !important;
+}
+
+.button-dark-advisor {
+	background-color: #0086b3 !important;
+	border-color: #0086b3 !important;
+    color:white;
+}
+
+.label-dark-advisor {
+    color:white;
+    background-color: #0086b3;
+    border-color: #0086b3;
+}
+
+.button-light-blue {
+	background-color: #ccf2ff !important;
+	border-color: #ccf2ff !important;
+}
