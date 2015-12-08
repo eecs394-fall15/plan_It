@@ -24,10 +24,10 @@
             </label>
         </div>
       
-      <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" ng-click="signUp(user)">
+      <button style="font-size: 1.5em; text-align:center;" id="signup" class="button button-block button-light" ng-click="signUp(user)">
             Sign Up
         </button>
-       <button style="margin-top:26%; text-align:center; margin-left:40%;" ng-click='scenario="Log in"' class="button button-dark">
+       <button style="margin-top:26%; text-align:center; margin-left:40%;" id="login" ng-click='scenario="Log in"' class="button button-dark">
             Log In 
         </button>
   </form>
@@ -42,15 +42,15 @@
       </div>
 
       <super-navigate location="example#getting-started">
-          <button class="button button-block button-light"><h3>Traveler</h3></button>
+          <button class="button button-block button-light" id="traveler"><h3>Traveler</h3></button>
       </super-navigate>
 
       <super-navigate location="example#feed">
-          <button class="button button-block button-light"><h3>Advisor</h3></button>
+          <button class="button button-block button-light" id="advisor"><h3>Advisor</h3></button>
       </super-navigate>
       
         
-        <button style="margin-top:70%; text-align:center; margin-left:40%;" ng-click='logOut()' class="button button-dark">
+        <button style="margin-top:60%; text-align:center; margin-left:40%;" id="logout" ng-click='logOut()' class="button button-dark">
             Log Out
         </button>
       
@@ -78,10 +78,10 @@
             </label>
         </div>
 
-        <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" ng-click="logIn(user)">
+        <button style="font-size: 1.5em; text-align:center;" class="button button-block button-light" id="loginbutton" ng-click="logIn(user)">
             Log in
         </button>
-        <button style="margin-top:40%; text-align:center; margin-left:40%;" ng-click='scenario="Sign up"' class="button button-dark">
+        <button style="margin-top:40%; text-align:center; margin-left:40%;" ng-click='scenario="Sign up"' id="signup" class="button button-dark">
             Sign up 
         </button>
     </form>
