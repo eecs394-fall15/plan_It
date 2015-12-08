@@ -141,6 +141,5 @@ angular
     
     $scope.back = function(){
         supersonic.ui.layers.pop();
-        window.open('getting-started.html','_self');
     }
 });
