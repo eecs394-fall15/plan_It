@@ -1,5 +1,9 @@
 #HOLIDAY PLANIT
 
+##DESCRIPTION
+Holiday PlanIt is an app that helps a traveler to get suggestions and tips for his travel plans from locals in the area or other users who are in the Holiday PlanIt app community. 
+The traveler can then customize his itinerary by picking from the suggestions and tips and choosing the suggestion he likes the most.
+
 ##CONTRIBUTORS
 ###Developers
 * [Edgar Vazquez](https://github.com/evz9)
@@ -14,10 +18,6 @@
 
 ###Coach
 * Professor Christopher Riesbeck of Northwestern University
-
-##DESCRIPTION
-Holiday PlanIt is an app that helps a traveler to get suggestions and tips for his travel plans from locals in the area or other users who are in the Holiday PlanIt app community. 
-The traveler can then customize his itinerary by picking from the suggestions and tips and choosing the suggestion he likes the most.
 
 ##SYSTEM REQUIREMENTS
 * Supersonic  (https://academy.appgyver.com/installwizard)
