@@ -39,7 +39,7 @@ The Application ID and the Rest API key can be found in the settings tabs. Use t
 Parse.initialize(application_ID_here, JavaScript_Key_here,Master_Key_here); 
 ```
 
-Plan_It/app/common/views/layout.html
+/app/common/views/layout.html
 ```
 Parse.initialize(application_ID_here, JavaScript_Key_here);
 ```
@@ -48,6 +48,7 @@ Parse.initialize(application_ID_here, JavaScript_Key_here);
 - Denoted by class name and then followed by bullet points of column name, type:
 
 ####User
+- Use Parse's custom User table
 
 ####Events
 - title, String
