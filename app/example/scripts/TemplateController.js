@@ -37,13 +37,7 @@ angular
         itenerary.save(null, {
             success: function(itenerary) {
                 supersonic.logger.log("itenerary successfully saved!!!!");
-          window.open('getting-started.html','_self');
-            //    var view = new supersonic.ui.View("example#newEvent");
-              //  supersonic.ui.layers.push(view, {
-                //    params: {
-                  //      id: itenerary.id
-                  //  }
-                   //});
+         supersonic.ui.layers.pop();
                         
             },
             error: function(itenerary, error) {
