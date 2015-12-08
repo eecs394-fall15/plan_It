@@ -2,6 +2,7 @@ angular
   .module('example')
   .controller('UpdateEventController', function($scope,supersonic) {
      $scope.event={};
+    $scope.missingTime = false;
     steroids.view.setBackgroundColor("#5cd6d6");
       supersonic.ui.views.current.params.onValue( function (eventId) {
         $scope.eventid = eventId.id; 
@@ -32,6 +33,15 @@ angular
      });
     
     $scope.updateEvent = function(){
+         if (!$scope.event.time){
+              $scope.missingTime = true; 
+         }
+         else{
+             $scope.saveEvent(); 
+         }
+    }
+    
+    $scope.saveEvent = function(){
         var eventsQ = new Parse.Query("Events");
         eventsQ.equalTo("objectId",$scope.eventid);
         eventsQ.find({
