@@ -4,21 +4,6 @@
 Holiday PlanIt is an app that helps a traveler to get suggestions and tips for his travel plans from locals in the area or other users who are in the Holiday PlanIt app community. 
 The traveler can then customize his itinerary by picking from the suggestions and tips and choosing the suggestion he likes the most.
 
-##CONTRIBUTORS
-###Developers
-* [Edgar Vazquez](https://github.com/evz9)
-* [Nikhil Thagadur](https://github.com/NikhilThagadur)
-* [Jaiveer Kothari](https://github.com/jaiveerkothari)
-* [Sophia Lou](https://github.com/sophialou)
-
-###MSIT Team
-* Amanda Goh
-* Santhi Ratnakaram
-* Rahil Kaul
-
-###Coach
-* Professor Christopher Riesbeck of Northwestern University
-
 ##SYSTEM REQUIREMENTS
 * Supersonic  (https://academy.appgyver.com/installwizard)
 * Angular.js 
@@ -87,7 +72,7 @@ Parse.initialize(application_ID_here, JavaScript_Key_here);
 - itineraryId, String
 - eventid, String
 
-* Install the Appgyver Supersonic Scanner from the App Store on your mobile device
+#####Install the Appgyver Supersonic Scanner from the App Store on your mobile device
 
 ##RUNNING
 ```
@@ -119,7 +104,20 @@ The app is divided into two modules- common and example. In the common module we
 * Loading times for database data delay the rate at which different screens populate. 
 * There is a different background for Android and IOS since supersonic’s API does not support background changes yet for Android devices
  
+##CONTRIBUTORS
+###Developers
+* [Edgar Vazquez](https://github.com/evz9)
+* [Nikhil Thagadur](https://github.com/NikhilThagadur)
+* [Jaiveer Kothari](https://github.com/jaiveerkothari)
+* [Sophia Lou](https://github.com/sophialou)
 
+###MSIT Team
+* Amanda Goh
+* Santhi Ratnakaram
+* Rahil Kaul
+
+###Coach
+* Professor Christopher Riesbeck of Northwestern University
 
 
 
