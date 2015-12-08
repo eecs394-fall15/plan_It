@@ -9,6 +9,11 @@ angular
     
      supersonic.ui.views.current.whenVisible(function() {
          
+                 supersonic.ui.navigationBar.update({
+      title: 'Update Event' ,
+      overrideBackButton: true
+    }).then(supersonic.ui.navigationBar.show());
+         
          
          var eventsQ = new Parse.Query("Events");
         eventsQ.equalTo("objectId",$scope.eventid);
@@ -46,5 +51,10 @@ angular
             error: function(errr){
             }
         });
+    }
+    
+        $scope.back = function(){
+        supersonic.ui.layers.pop();
+        window.open('getting-started.html','_self');
     }
 });
