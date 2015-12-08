@@ -3,6 +3,7 @@ angular
   .controller('TemplateController', function($scope, supersonic) {
    $scope.navbarTitle = "Create Itinerary"; 
    $scope.template = {};
+   $scope.missingCity = false;
     
     //steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
     steroids.view.setBackgroundColor("#5cd6d6");
@@ -16,6 +17,15 @@ angular
       })
     
     $scope.submitForm = function(){
+        if (!$scope.template.city){
+            $scope.missingCity = true;
+        }
+        else{
+            $scope.saveForm(); 
+        }
+    }
+    
+    $scope.saveForm = function(){
         var Itenerary = Parse.Object.extend("Itinerary"); 
         var itenerary = new Itenerary(); 
         
