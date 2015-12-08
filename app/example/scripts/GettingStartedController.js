@@ -12,6 +12,7 @@ angular
         var query = new Parse.Query(Itenary);
         
         query.equalTo("author",Parse.User.current());
+        query.descending("createdAt");
         query.find({
             success: function (results) {
                 supersonic.logger.log(results);
