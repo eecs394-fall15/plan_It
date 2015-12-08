@@ -7,6 +7,14 @@ angular
     //steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
     steroids.view.setBackgroundColor("#5cd6d6");
     
+    supersonic.ui.views.current.whenVisible(function() {
+        supersonic.ui.navigationBar.update({
+      title: $scope.navbarTitle ,
+      overrideBackButton: true
+    }).then(supersonic.ui.navigationBar.show());
+    
+      })
+    
     $scope.submitForm = function(){
         var Itenerary = Parse.Object.extend("Itinerary"); 
         var itenerary = new Itenerary(); 
@@ -15,8 +23,6 @@ angular
         itenerary.set("author", Parse.User.current());
         itenerary.set("events",[]); 
         itenerary.set("published",false); 
-        // itenerary.set("country",$scope.template.country);
-        // itenerary.set("date",$scope.template.date); 
         
         itenerary.save(null, {
             success: function(itenerary) {
@@ -35,7 +41,6 @@ angular
                 supersonic.logger.log(error); 
             }
         }); 
-        
     }
     
     $scope.goBack = function(){
