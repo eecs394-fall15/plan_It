@@ -3,7 +3,7 @@ angular
   .controller('NewEventController', function($scope,supersonic) {
     $scope.missingTime = false; 
     $scope.event={};
-    $scope.ideas=[{title: "Accommodation", id: 0},
+$scope.ideas=[{title: "Accommodation", id: 0},
 {title: "Adventure sports", id: 1},
 {title: "Amusement Park", id: 2},
 {title: "Antiques Shops", id: 3},
@@ -42,6 +42,14 @@ angular
  ];
     $scope.selected = $scope.ideas[0];
     
+        supersonic.ui.views.current.whenVisible(function() {
+        supersonic.ui.navigationBar.update({
+      title: 'New Event' ,
+      overrideBackButton: true
+    }).then(supersonic.ui.navigationBar.show());
+    
+      })
+        
      // steroids.view.setBackgroundImage("/icons/backgroundTeal.png");
     steroids.view.setBackgroundColor("#5cd6d6");
     
@@ -106,17 +114,7 @@ angular
               $scope.missingTime = true; 
          }
          else{
-             $scope.saveEvent();
-             //supersonic.ui.layers.pop();
-
-             // var view = new supersonic.ui.View("example#customize");       
-             //    supersonic.ui.layers.push(view, {
-             //        params: {
-             //            id: $scope.itinerary
-             //        }
-             //       });
-
-
+             $scope.saveEvent(); 
          }
     } 
     

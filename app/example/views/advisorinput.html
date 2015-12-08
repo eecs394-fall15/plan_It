@@ -1,8 +1,5 @@
 <div class="padding" ng-controller="AdvisorInputController">
 
-  <super-navbar>
-  </super-navbar>
-
 	<form novalidate class="simple-form">
         
         <div class="item item-divider label-dark-advisor">
@@ -22,13 +19,13 @@
             <div ng-show="responded.value">My Suggestion:</div>
         
         </span>
-            <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" ng-model="selected">
+            <select ng-options= "sugg as sugg.title for sugg in suggestions track by sugg.id" id="dropdown" ng-model="selected">
         </select>
       </label>
       <label class="item item-input">
         <span class="input-label" ng-hide="responded.value"><b ng-show="suggestions.length > 0">OR</b> Enter New Suggestion:</span>
         <span class="input-label" ng-show="responded.value"><b ng-show="suggestions.length > 0">OR</b> Update My Suggestion:</span>
-             <input type="text" ng-model="advisor.suggestion" />
+             <input type="text" id="suggestionInput" ng-model="advisor.suggestion" />
       </label>
         
         <div class="item item-divider label-dark-advisor">
@@ -36,12 +33,13 @@
             <span class="input-label label-dark-advisor" ng-show="responded.value">My Tip:</span>
                     </div>
              <label class="item item-input">
-                   <textarea cols="40" rows="5" type="text" ng-model="advisor.tip"></textarea>
+                   <textarea id="tipInput" cols="40" rows="5" type="text" ng-model="advisor.tip"></textarea>
                 </label>
      </div>
 
         <br>
 	    <button ng-click="saveResponse()" class="button button-dark-advisor">Done</button>
+        <button ng-click="back()" class="button button-light-blue" id="cancelButton">Cancel</button>
         
 	</form>
 

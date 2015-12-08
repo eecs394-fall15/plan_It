@@ -1,26 +1,13 @@
 <div class="padding" ng-controller="UpdateEventController">
-     <super-navbar>
-    <super-navbar-title>Update Event</super-navbar-title>
-      
-    </super-navbar>
    
     <form>
         <div class="list">
-            
-         <!--        <div class="item item-divider label-dark">
-            <span class="input-label label-dark">What are you looking for...?</span>
-                    </div>
-         <label class="item item-input item-select">
-                <span class="input-label">Looking for: </span>
-                <select ng-options= "idea as idea.title for idea in ideas track by idea.id" ng-model="selected">
-                </select>
-              </label>         -->
                     
                  <div class="item item-divider label-dark">
             <span class="input-label label-dark">Looking for:</span>
                     </div>
              <label class="item item-input">
-                    <input type="text" ng-model="event.title">
+                    <input id="lookingForInput" type="text" ng-model="event.title">
                 </label>
 
                   <div class="item item-divider label-dark">
@@ -36,11 +23,11 @@
            <span class="input-label label-dark">Additional Preferences:</span>
                     </div>
              <label class="item item-input">
-                   <textarea cols="40" rows="5" type="text" ng-model="event.additional"></textarea>
+                   <textarea cols="40" rows="5" type="text" id="additionalPrefInput" ng-model="event.additional"></textarea>
                 </label>
                 <br>
-            <button ng-click="updateEvent()" class="button button-light">Update</button>
-            <button ng-click="back()" class="button button-darker">Cancel</button>
+            <button ng-click="updateEvent()" class="button button-light" id="updateButton">Update</button>
+            <button ng-click="back()" class="button button-darker" id="cancelButton">Cancel</button>
         </div>
     </form>
 </div>

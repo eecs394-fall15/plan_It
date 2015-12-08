@@ -22,7 +22,10 @@ angular
     
     supersonic.ui.views.current.whenVisible(function() {
         
-        
+            supersonic.ui.navigationBar.update({
+      title: 'Give a Suggestion and Tip' ,
+      overrideBackButton: true
+    }).then(supersonic.ui.navigationBar.show());
         
         // querying to get currentEvent obj and that event's existing suggestions 
         var Event = Parse.Object.extend("Events");
@@ -49,13 +52,8 @@ angular
 		     	$scope.suggestions.push(curr_sugg);
 		     }
             
-            if ($scope.suggestions.length > 0){
-             $scope.selected = $scope.suggestions[0];
-            }
-            
-                    
-        // check if user already has existing input for this event
-  //  if ($scope.allResponders.length > 0) { 
+                $scope.selected = null; 
+
         if ($scope.allResponders.indexOf(Parse.User.current().id) > -1) { 
             $scope.responded.value = true; 
          
@@ -176,22 +174,6 @@ angular
 
                     }
               });
-        
-      /*   var eventsquery = new Parse.Query("Events");
-            eventsquery.equalTo("objectId", $scope.eventId);
-            eventsquery.find({
-                success: function(q_events) {
-                   
-                    supersonic.logger.log("adding info to Event");
-                    var current_event = q_events[0];
-                    current_event.addUnique("suggestions",suggestion);
-                    current_event.addUnique("responders",Parse.User.current().id);
-                    current_event.save();    
-                },
-                error: function(error) {
-                    supersonic.logger.log("query q_events failed");
-                }  
-            }); */
        }
         else {        // saving tip to existing suggestions
             var query = new Parse.Query("Suggestions");
@@ -254,5 +236,9 @@ angular
                 });
         }
     } // end of saveResponse 
+    
+    $scope.back = function(){
+        supersonic.ui.layers.pop();
+    }
 
 });
