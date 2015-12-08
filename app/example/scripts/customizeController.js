@@ -52,6 +52,7 @@ angular
                 };
 
                 supersonic.ui.dialog.alert("Itinerary successfully submitted!", options).then(function() {
+                  window.open('getting-started.html','_self');
                 //supersonic.ui.layers.pop();
                 });
                 
