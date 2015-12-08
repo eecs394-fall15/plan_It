@@ -90,12 +90,13 @@ $scope.ideas=[{title: "Accommodation", id: 0},
                         savedItin[0].addUnique("events",savedEvent);
                         savedItin[0].save(); 
                         
-                var view = new supersonic.ui.View("example#customize");       
-                supersonic.ui.layers.push(view, {
-                    params: {
-                        id: $scope.itinerary
-                    }
-                   });
+                //var view = new supersonic.ui.View("example#customize");       
+                //supersonic.ui.layers.push(view, {
+                    //params: {
+                    //    id: $scope.itinerary
+                  //  }
+                //   });
+                   supersonic.ui.layers.pop();
                     },
                     error: function(error){
                      supersonic.logger.log(error); 
