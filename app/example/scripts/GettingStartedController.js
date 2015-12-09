@@ -19,7 +19,7 @@ angular
             $scope.iterneraries = results; 
     },
     error: function (error) {
-        alert("Error: " + error.code + " " + error.message);
+       // alert("Error: " + error.code + " " + error.message);
     }
         
         });
